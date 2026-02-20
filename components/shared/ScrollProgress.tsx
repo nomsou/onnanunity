@@ -1,0 +1,22 @@
+"use client";
+
+import { useScroll, useSpring, motion } from "framer-motion";
+
+export default function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+
+  // Spring makes the bar follow with a slight elastic delay — more premium feel
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping:   30,
+    restDelta: 0.001,
+  });
+
+  return (
+    <motion.div
+      style={{ scaleX, transformOrigin: "left" }}
+      className="fixed top-0 left-0 right-0 h-[2px] z-[100] bg-gold-gradient pointer-events-none"
+      aria-hidden
+    />
+  );
+}

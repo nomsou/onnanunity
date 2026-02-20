@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
-import { PageTransition } from "./components/PageTransition";
-import { ScrollProgress } from "./components/ScrollProgress";
-import { FloatingCTA } from "./components/FloatingCTA";
-import { ScrollToTop } from "./components/ScrollToTop";
-import { CustomCursor } from "./components/CustomCursor";
+import Navbar          from "@/components/layout/Navbar";
+import Footer          from "@/components/layout/Footer";
+import PageTransition  from "@/components/shared/PageTransition";
+import ScrollProgress  from "@/components/shared/ScrollProgress";
+import FloatingCTA     from "@/components/shared/FloatingCTA";
+import ScrollToTop     from "@/components/shared/ScrollToTop";
+import CustomCursor    from "@/components/shared/CustomCursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Onnan Unity | Luxury Real Estate in Abuja",
+    default:  "Onnan Unity | Luxury Real Estate in Abuja",
     template: "%s | Onnan Unity",
   },
   description:
     "Onnan Unity delivers exceptional luxury residential developments across Abuja's most " +
-    "prestigious neighbourhoods — Katmape Extension,Maitama, Jahi, and beyond. Explore our portfolio of premium villas, " +
+    "prestigious neighbourhoods — Maitama, Jahi, and beyond. Explore our portfolio of premium villas, " +
     "terraces, and smart communities.",
   keywords: [
     "luxury real estate Abuja",
@@ -26,31 +26,29 @@ export const metadata: Metadata = {
     "real estate developer Abuja",
   ],
   openGraph: {
-    type: "website",
-    locale: "en_NG",
-    url: "https://onnanunity.com",
-    siteName: "Onnan Unity",
-    title: "Onnan Unity | Luxury Real Estate in Abuja",
-    description:
-      "Premium residential developments in Abuja's most coveted addresses.",
+    type:        "website",
+    locale:      "en_NG",
+    url:         "https://onnanunity.com",
+    siteName:    "Onnan Unity",
+    title:       "Onnan Unity | Luxury Real Estate in Abuja",
+    description: "Premium residential developments in Abuja's most coveted addresses.",
     images: [
       {
-        url: "/images/og-image.jpg",
-        width: 1200,
+        url:    "/images/og-image.jpg",
+        width:  1200,
         height: 630,
-        alt: "Onnan Unity — Luxury Real Estate",
+        alt:    "Onnan Unity — Luxury Real Estate",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Onnan Unity | Luxury Real Estate in Abuja",
-    description:
-      "Premium residential developments in Abuja's most coveted addresses.",
-    images: ["/images/og-image.jpg"],
+    card:        "summary_large_image",
+    title:       "Onnan Unity | Luxury Real Estate in Abuja",
+    description: "Premium residential developments in Abuja's most coveted addresses.",
+    images:      ["/images/og-image.jpg"],
   },
   robots: {
-    index: true,
+    index:  true,
     follow: true,
   },
 };
