@@ -98,7 +98,6 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* Email + Phone row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <input

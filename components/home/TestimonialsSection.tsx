@@ -5,7 +5,10 @@ import SectionWrapper from "@/components/layout/SectionWrapper";
 import SectionHeading from "@/components/ui/SectionHeading";
 import TestimonialCard from "@/components/shared/TestimonialCard";
 import { getTestimonials } from "@/lib/testimonials";
-import { staggerContainerVariants, fadeUpVariants } from "@/hooks/useScrollAnimation";
+import {
+  staggerContainerVariants,
+  fadeUpVariants,
+} from "@/hooks/useScrollAnimation";
 
 export default function TestimonialsSection() {
   const testimonials = getTestimonials();
@@ -28,7 +31,11 @@ export default function TestimonialsSection() {
         className="grid grid-cols-1 md:grid-cols-3 gap-5"
       >
         {testimonials.map((testimonial) => (
-          <motion.div key={testimonial.id} variants={fadeUpVariants} className="h-full">
+          <motion.div
+            key={testimonial.id}
+            variants={fadeUpVariants}
+            className="h-full"
+          >
             <TestimonialCard testimonial={testimonial} className="h-full" />
           </motion.div>
         ))}

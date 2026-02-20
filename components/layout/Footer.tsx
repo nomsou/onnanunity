@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail, Instagram, Facebook, Linkedin } from "lucide-react";
+import { MapPin, Phone, Mail, Instagram, Linkedin } from "lucide-react";
 import { navLinks } from "@/lib/utils";
 
 const legalLinks = [
-  { label: "Privacy Policy",    href: "#" },
+  { label: "Privacy Policy", href: "#" },
   { label: "Terms & Conditions", href: "#" },
 ];
 
@@ -12,12 +12,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-luxury-charcoal border-t border-white/5">
-
-      {/* Main Footer Grid */}
       <div className="max-w-site mx-auto px-6 md:px-12 lg:px-20 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-
-          {/* Brand Column */}
           <div className="lg:col-span-2 flex flex-col gap-6">
             <Link href="/" className="flex flex-col leading-none w-fit">
               <span className="font-display text-3xl font-light tracking-[0.15em] text-luxury-cream">
@@ -34,17 +30,21 @@ export default function Footer() {
               contemporary living.
             </p>
 
-            {/* Contact Details */}
             <div className="flex flex-col gap-3 mt-2">
               <a
-                href="https://maps.google.com"
+                href="https://maps.app.goo.gl/d4RX2a8rptS7myxEA"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-start gap-3 text-luxury-muted hover:text-luxury-gold transition-colors duration-300 group"
               >
-                <MapPin size={14} className="mt-0.5 shrink-0 group-hover:text-luxury-gold" />
+                <MapPin
+                  size={14}
+                  className="mt-0.5 shrink-0 group-hover:text-luxury-gold"
+                />
                 <span className="font-sans text-xs leading-relaxed">
-                  2b Samuel A. Ogedengbe Crescent,<br />Jabi, Abuja, Nigeria
+                  2b Samuel A. Ogedengbe Crescent,
+                  <br />
+                  Jabi, Abuja, Nigeria
                 </span>
               </a>
               <a
@@ -64,7 +64,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Navigation Column */}
           <div className="flex flex-col gap-5">
             <h4 className="font-sans text-[10px] uppercase tracking-[0.25em] text-luxury-gold">
               Navigation
@@ -82,20 +81,19 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Developments Column */}
           <div className="flex flex-col gap-5">
             <h4 className="font-sans text-[10px] uppercase tracking-[0.25em] text-luxury-gold">
               Developments
             </h4>
             <nav className="flex flex-col gap-3">
               {[
-                { label: "Askia I",        href: "/projects/askia-i" },
-                { label: "Askia II",       href: "/projects/askia-ii" },
-                { label: "Gana Villas",    href: "/projects/gana-villas" },
-                { label: "Mansa",          href: "/projects/mansa" },
-                { label: "Samori Villas",  href: "/projects/samori" },
-                { label: "Sonni Villas",   href: "/projects/sonni" },
-                { label: "Embe Terraces",  href: "/projects/embe-terraces" },
+                { label: "Askia I", href: "/projects/askia-i" },
+                { label: "Askia II", href: "/projects/askia-ii" },
+                { label: "Gana Villas", href: "/projects/gana-villas" },
+                { label: "Mansa", href: "/projects/mansa" },
+                { label: "Samori Villas", href: "/projects/samori" },
+                { label: "Sonni Villas", href: "/projects/sonni" },
+                { label: "Embe Terraces", href: "/projects/embe-terraces" },
               ].map((link) => (
                 <Link
                   key={link.href}
@@ -110,19 +108,24 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-white/5">
         <div className="max-w-site mx-auto px-6 md:px-12 lg:px-20 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-sans text-xs text-luxury-muted">
             © {year} Onnan Unity. All Rights Reserved.
           </p>
 
-          {/* Social Icons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center gap-4 flex-1">
             {[
-              { Icon: Instagram, href: "#", label: "Instagram" },
-              { Icon: Facebook,  href: "#", label: "Facebook"  },
-              { Icon: Linkedin,  href: "#", label: "LinkedIn"  },
+              {
+                Icon: Instagram,
+                href: "https://www.instagram.com/onnanunityco",
+                label: "Instagram",
+              },
+              {
+                Icon: Linkedin,
+                href: "https://www.linkedin.com/company/onnan-unity-company-limited/",
+                label: "LinkedIn",
+              },
             ].map(({ Icon, href, label }) => (
               <a
                 key={label}
@@ -136,8 +139,7 @@ export default function Footer() {
               </a>
             ))}
           </div>
-
-          {/* Legal Links */}
+{/* 
           <div className="flex items-center gap-4">
             {legalLinks.map((link) => (
               <Link
@@ -148,7 +150,7 @@ export default function Footer() {
                 {link.label}
               </Link>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

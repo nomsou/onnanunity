@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow:     "/",
-        disallow:  ["/api/", "/_next/"],
+        allow: "/",
+        disallow: ["/api/", "/_next/"],
       },
     ],
     sitemap: "https://onnanunity.com/sitemap.xml",

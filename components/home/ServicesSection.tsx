@@ -6,12 +6,15 @@ import SectionWrapper from "@/components/layout/SectionWrapper";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import { services } from "@/lib/utils";
-import { staggerContainerVariants, fadeUpVariants } from "@/hooks/useScrollAnimation";
+import {
+  staggerContainerVariants,
+  fadeUpVariants,
+} from "@/hooks/useScrollAnimation";
 
 const iconMap: Record<string, React.ReactNode> = {
   Building2: <Building2 size={28} />,
-  HardHat:   <HardHat   size={28} />,
-  Zap:       <Zap       size={28} />,
+  HardHat: <HardHat size={28} />,
+  Zap: <Zap size={28} />,
 };
 
 export default function ServicesSection() {
@@ -41,30 +44,28 @@ export default function ServicesSection() {
             variants={fadeUpVariants}
             className="bg-luxury-charcoal p-10 flex flex-col gap-6 group hover:bg-luxury-charcoal2 transition-colors duration-300"
           >
-            {/* Icon */}
             <div className="text-luxury-gold group-hover:scale-110 transition-transform duration-300 w-fit">
               {iconMap[service.icon] ?? <Zap size={28} />}
             </div>
 
-            {/* Number */}
             <span className="font-display text-5xl font-light text-luxury-gold/10 leading-none -mt-2">
               0{services.indexOf(service) + 1}
             </span>
 
-            {/* Title */}
             <h3 className="font-display text-2xl font-light text-luxury-cream -mt-4">
               {service.title}
             </h3>
 
-            {/* Description */}
             <p className="font-sans text-sm text-luxury-muted leading-relaxed">
               {service.description}
             </p>
 
-            {/* Feature List */}
             <ul className="flex flex-col gap-2 mt-auto pt-4 border-t border-white/5">
               {service.features.map((f) => (
-                <li key={f} className="font-sans text-xs text-luxury-muted flex items-center gap-2">
+                <li
+                  key={f}
+                  className="font-sans text-xs text-luxury-muted flex items-center gap-2"
+                >
                   <span className="w-1 h-1 rounded-full bg-luxury-gold shrink-0" />
                   {f}
                 </li>

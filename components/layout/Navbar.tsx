@@ -14,19 +14,16 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  // Detect scroll to toggle solid background
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
@@ -45,13 +42,19 @@ export default function Navbar() {
         )}
       >
         <div className="max-w-site mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-4 group">
+            <div className="relative w-14 h-14 overflow-hidden">
+              <img
+                src="/logo.png"
+                alt="Onnan Unity Logo"
+                className="w-full h-full object-contain"
+                width={100}
+                height={100}
+              />
+            </div>
             <div className="flex flex-col leading-none">
               <span className="font-display text-xl font-light tracking-[0.15em] text-luxury-cream group-hover:text-luxury-gold transition-colors duration-300">
-                ONNAN
-              </span>
-              <span className="font-sans text-[9px] tracking-[0.35em] text-luxury-gold uppercase">
-                UNITY
+                ONNAN UNITY
               </span>
             </div>
           </Link>

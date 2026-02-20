@@ -5,11 +5,10 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { firstName, lastName, email, phone, interest, message } = body;
 
-    // ── Validation ──────────────────────────────────────────────────
     if (!firstName || !lastName || !email || !interest || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -17,7 +16,7 @@ export async function POST(req: NextRequest) {
     if (!emailRegex.test(email)) {
       return NextResponse.json(
         { error: "Invalid email address" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -56,21 +55,20 @@ export async function POST(req: NextRequest) {
 
     // Log for now (remove when Resend is connected)
     console.info("[Contact Form]", {
-      name:      `${firstName} ${lastName}`,
+      name: `${firstName} ${lastName}`,
       email,
-      phone:     phone || null,
+      phone: phone || null,
       interest,
       message,
       timestamp: new Date().toISOString(),
     });
 
     return NextResponse.json({ success: true }, { status: 200 });
-
   } catch (error) {
     console.error("[Contact Form Error]", error);
     return NextResponse.json(
       { error: "Internal server error. Please try again or call us directly." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

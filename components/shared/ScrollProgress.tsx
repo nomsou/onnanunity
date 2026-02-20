@@ -5,10 +5,9 @@ import { useScroll, useSpring, motion } from "framer-motion";
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll();
 
-  // Spring makes the bar follow with a slight elastic delay — more premium feel
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 120,
-    damping:   30,
+    damping: 30,
     restDelta: 0.001,
   });
 

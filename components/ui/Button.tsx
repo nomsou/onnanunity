@@ -4,24 +4,26 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 interface ButtonProps {
-  children:   React.ReactNode;
-  href?:      string;
-  onClick?:   () => void;
-  variant?:   "gold" | "outline" | "ghost";
-  size?:      "sm" | "md" | "lg";
+  children: React.ReactNode;
+  href?: string;
+  onClick?: () => void;
+  variant?: "gold" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg";
   className?: string;
-  type?:      "button" | "submit" | "reset";
-  disabled?:  boolean;
-  external?:  boolean;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  external?: boolean;
 }
 
 const base =
   "inline-flex items-center justify-center gap-2 font-sans font-medium tracking-widest uppercase text-xs transition-all duration-300 ease-luxury cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luxury-gold/50 disabled:opacity-50 disabled:pointer-events-none";
 
 const variants = {
-  gold:    "bg-luxury-gold text-luxury-charcoal hover:bg-luxury-gold2 active:scale-[0.98]",
-  outline: "border border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-luxury-charcoal active:scale-[0.98]",
-  ghost:   "text-luxury-gold hover:text-luxury-gold2 underline-offset-4 hover:underline",
+  gold: "bg-luxury-gold text-luxury-charcoal hover:bg-luxury-gold2 active:scale-[0.98]",
+  outline:
+    "border border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-luxury-charcoal active:scale-[0.98]",
+  ghost:
+    "text-luxury-gold hover:text-luxury-gold2 underline-offset-4 hover:underline",
 };
 
 const sizes = {
@@ -34,10 +36,10 @@ export default function Button({
   children,
   href,
   onClick,
-  variant   = "gold",
-  size      = "md",
+  variant = "gold",
+  size = "md",
   className,
-  type      = "button",
+  type = "button",
   disabled,
   external,
 }: ButtonProps) {
@@ -56,7 +58,12 @@ export default function Button({
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes} disabled={disabled}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={classes}
+      disabled={disabled}
+    >
       {children}
     </button>
   );

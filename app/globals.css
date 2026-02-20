@@ -1,18 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ── CSS Variables ─────────────────────────────────────────────────────────── */
 :root {
-  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
-  --font-dm-sans:   'DM Sans', Helvetica, sans-serif;
-  --ease-luxury:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --font-cormorant: "Cormorant Garamond", Georgia, serif;
+  --font-dm-sans: "DM Sans", Helvetica, sans-serif;
+  --ease-luxury: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ── Base Reset ────────────────────────────────────────────────────────────── */
 @layer base {
   *,
   *::before,
@@ -24,7 +22,7 @@
 
   html {
     scroll-behavior: smooth;
-    -webkit-font-smoothing:  antialiased;
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
@@ -36,120 +34,125 @@
     overflow-x: hidden;
   }
 
-  /* ── Focus styles — accessible but styled ─────────────────────── */
   :focus-visible {
-    outline: 2px solid #C9A84C;
+    outline: 2px solid #c9a84c;
     outline-offset: 3px;
   }
 
-  /* ── Selection ────────────────────────────────────────────────── */
   ::selection {
     background-color: rgba(201, 168, 76, 0.2);
-    color: #C9A84C;
+    color: #c9a84c;
   }
 
-  /* ── Scrollbar ────────────────────────────────────────────────── */
-  ::-webkit-scrollbar       { width: 5px; }
-  ::-webkit-scrollbar-track { background: #0E0E0E; }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0e0e0e;
+  }
   ::-webkit-scrollbar-thumb {
-    background:    rgba(201, 168, 76, 0.25);
+    background: rgba(201, 168, 76, 0.25);
     border-radius: 3px;
   }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(201, 168, 76, 0.5); }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 168, 76, 0.5);
+  }
 
-  /* ── Images ───────────────────────────────────────────────────── */
   img {
     max-width: 100%;
     display: block;
   }
 
-  /* ── Typography refinements ───────────────────────────────────── */
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     font-family: var(--font-cormorant);
     font-weight: 300;
     line-height: 1.1;
   }
 }
 
-/* ── Reusable Utilities ────────────────────────────────────────────────────── */
 @layer utilities {
-
-  /* Gold gradient text */
   .text-gold-gradient {
-    background: linear-gradient(135deg, #C9A84C 0%, #E8C97A 50%, #C9A84C 100%);
+    background: linear-gradient(135deg, #c9a84c 0%, #e8c97a 50%, #c9a84c 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Thin horizontal rule in gold */
   .gold-rule {
     display: inline-block;
     width: 3rem;
     height: 1px;
-    background-color: #C9A84C;
+    background-color: #c9a84c;
     flex-shrink: 0;
   }
 
-  /* Dark card */
   .card-dark {
     @apply bg-luxury-charcoal2 border border-white/5;
   }
 
-  /* Hover lift */
   .hover-lift {
     @apply transition-transform duration-500 hover:-translate-y-1;
     transition-timing-function: var(--ease-luxury);
   }
 
-  /* Image gradient overlay */
   .image-overlay::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 30%, rgba(14,14,14,0.85) 100%);
+    background: linear-gradient(
+      180deg,
+      transparent 30%,
+      rgba(14, 14, 14, 0.85) 100%
+    );
   }
 
-  /* ── Animated underline for links ─────────────────────────────── */
   .link-underline {
     position: relative;
   }
   .link-underline::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -2px;
     left: 0;
     width: 0;
     height: 1px;
-    background: #C9A84C;
+    background: #c9a84c;
     transition: width 0.35s var(--ease-luxury);
   }
   .link-underline:hover::after {
     width: 100%;
   }
 
-  /* ── Shimmer loading skeleton ──────────────────────────────────── */
   .skeleton {
     background: linear-gradient(
       90deg,
-      rgba(255,255,255,0.03) 25%,
-      rgba(255,255,255,0.07) 50%,
-      rgba(255,255,255,0.03) 75%
+      rgba(255, 255, 255, 0.03) 25%,
+      rgba(255, 255, 255, 0.07) 50%,
+      rgba(255, 255, 255, 0.03) 75%
     );
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
   }
 
   @keyframes shimmer {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
   }
 
-  /* ── Section transition — used on page-level sections ─────────── */
   .section-reveal {
     opacity: 0;
     transform: translateY(32px);
-    transition: opacity 0.7s var(--ease-luxury), transform 0.7s var(--ease-luxury);
+    transition:
+      opacity 0.7s var(--ease-luxury),
+      transform 0.7s var(--ease-luxury);
   }
   .section-reveal.in-view {
     opacity: 1;
@@ -157,20 +160,17 @@
   }
 }
 
-/* ── Reduced Motion ────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration:   0.01ms !important;
+    animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration:  0.01ms !important;
+    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }
 
-/* ── Page transition support ───────────────────────────────────────────────── */
-/* Prevents flash of unstyled content during route changes */
 .page-transition-enter {
   opacity: 0;
   transform: translateY(10px);
@@ -178,16 +178,16 @@
 .page-transition-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.4s var(--ease-luxury), transform 0.4s var(--ease-luxury);
+  transition:
+    opacity 0.4s var(--ease-luxury),
+    transform 0.4s var(--ease-luxury);
 }
 
-/* ── Custom cursor (desktop only) ──────────────────────────────────────────── */
 @media (pointer: fine) {
   body {
     cursor: none;
   }
 
-  /* Show default cursor inside iframes/maps */
   iframe {
     cursor: auto;
   }

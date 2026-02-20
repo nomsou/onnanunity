@@ -5,7 +5,10 @@ export async function POST(req: NextRequest) {
     const { email } = await req.json();
 
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-      return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid email address" },
+        { status: 400 },
+      );
     }
 
     // ── TODO: Connect to your mailing list provider ─────────────────
@@ -21,12 +24,17 @@ export async function POST(req: NextRequest) {
     // Option C — Simply store in a database (Supabase, PlanetScale, etc.)
     //
 
-    console.log("Newsletter subscription:", { email, timestamp: new Date().toISOString() });
+    console.log("Newsletter subscription:", {
+      email,
+      timestamp: new Date().toISOString(),
+    });
 
     return NextResponse.json({ success: true }, { status: 200 });
-
   } catch (error) {
     console.error("Subscribe error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
   }
 }

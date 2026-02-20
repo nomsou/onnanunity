@@ -1,7 +1,6 @@
 import Image from "next/image";
 import SectionWrapper from "@/components/layout/SectionWrapper";
 
-// Replace with actual partner data once logos are available
 const partners = [
   { name: "Partner 1", logo: "/images/partners/partner-1.png" },
   { name: "Partner 2", logo: "/images/partners/partner-2.png" },
@@ -25,7 +24,6 @@ export default function PartnersSection() {
                 key={partner.name}
                 className="relative h-8 w-24 opacity-40 hover:opacity-70 transition-opacity duration-300 grayscale hover:grayscale-0"
               >
-                {/* Fallback text placeholder when logo images don't exist */}
                 <span className="font-sans text-xs text-luxury-muted tracking-wider">
                   {partner.name}
                 </span>

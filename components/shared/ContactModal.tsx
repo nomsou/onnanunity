@@ -8,16 +8,16 @@ import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 
 interface ContactModalProps {
-  isOpen:   boolean;
-  onClose:  () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 interface FormValues {
-  name:     string;
-  email:    string;
-  phone?:   string;
+  name: string;
+  email: string;
+  phone?: string;
   interest: string;
-  message:  string;
+  message: string;
 }
 
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
@@ -28,31 +28,33 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<FormValues>();
 
-  // Close on Escape key
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  // Lock body scroll
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   const onSubmit = async (data: FormValues) => {
     try {
       const res = await fetch("/api/contact", {
-        method:  "POST",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({
+        body: JSON.stringify({
           firstName: data.name.split(" ")[0],
-          lastName:  data.name.split(" ").slice(1).join(" ") || "-",
-          email:     data.email,
-          phone:     data.phone,
-          interest:  data.interest,
-          message:   data.message,
+          lastName: data.name.split(" ").slice(1).join(" ") || "-",
+          email: data.email,
+          phone: data.phone,
+          interest: data.interest,
+          message: data.message,
         }),
       });
       if (!res.ok) throw new Error("Submission failed");
@@ -65,14 +67,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const inputClass = cn(
     "w-full bg-luxury-charcoal3 border border-white/10 text-luxury-cream placeholder-luxury-muted",
     "font-sans text-sm px-4 py-3 outline-none transition-all duration-300",
-    "focus:border-luxury-gold/50 focus:bg-luxury-charcoal2"
+    "focus:border-luxury-gold/50 focus:bg-luxury-charcoal2",
   );
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -81,7 +82,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm"
           />
 
-          {/* Panel */}
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
@@ -89,7 +89,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-lg bg-luxury-charcoal2 overflow-y-auto"
           >
-            {/* Header */}
             <div className="flex items-start justify-between p-8 border-b border-white/5">
               <div>
                 <p className="font-sans text-[10px] uppercase tracking-[0.25em] text-luxury-gold mb-2">
@@ -109,12 +108,23 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             </div>
 
             <div className="p-8 flex flex-col gap-8">
-              {/* Quick contact info */}
               <div className="flex flex-col gap-3">
                 {[
-                  { Icon: Phone, text: "+234 806 032 8758", href: "tel:+2348060328758" },
-                  { Icon: Mail,  text: "info@onnanunity.com", href: "mailto:info@onnanunity.com" },
-                  { Icon: MapPin, text: "2b Samuel A. Ogedengbe Crescent, Jabi, Abuja", href: "#" },
+                  {
+                    Icon: Phone,
+                    text: "+234 806 032 8758",
+                    href: "tel:+2348060328758",
+                  },
+                  {
+                    Icon: Mail,
+                    text: "info@onnanunity.com",
+                    href: "mailto:info@onnanunity.com",
+                  },
+                  {
+                    Icon: MapPin,
+                    text: "2b Samuel A. Ogedengbe Crescent, Jabi, Abuja",
+                    href: "#",
+                  },
                 ].map(({ Icon, text, href }) => (
                   <a
                     key={text}
@@ -129,30 +139,44 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
               <div className="h-px bg-white/5" />
 
-              {/* Form */}
               {isSubmitSuccessful ? (
                 <div className="flex flex-col items-center justify-center py-12 gap-4 text-center">
                   <div className="w-16 h-16 rounded-full border border-luxury-gold/30 flex items-center justify-center">
                     <span className="text-luxury-gold text-2xl">✓</span>
                   </div>
-                  <h3 className="font-display text-2xl text-luxury-cream">Thank You</h3>
+                  <h3 className="font-display text-2xl text-luxury-cream">
+                    Thank You
+                  </h3>
                   <p className="font-sans text-sm text-luxury-muted">
-                    We&rsquo;ve received your message and will be in touch within 24 hours.
+                    We&rsquo;ve received your message and will be in touch
+                    within 24 hours.
                   </p>
-                  <Button onClick={onClose} variant="outline" size="sm" className="mt-4">
+                  <Button
+                    onClick={onClose}
+                    variant="outline"
+                    size="sm"
+                    className="mt-4"
+                  >
                     Close
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="flex flex-col gap-4"
+                >
                   <div>
                     <input
-                      {...register("name", { required: "Your name is required" })}
+                      {...register("name", {
+                        required: "Your name is required",
+                      })}
                       placeholder="Full Name *"
                       className={inputClass}
                     />
                     {errors.name && (
-                      <p className="text-red-400 text-xs mt-1 font-sans">{errors.name.message}</p>
+                      <p className="text-red-400 text-xs mt-1 font-sans">
+                        {errors.name.message}
+                      </p>
                     )}
                   </div>
 
@@ -160,14 +184,19 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     <input
                       {...register("email", {
                         required: "Email is required",
-                        pattern: { value: /^\S+@\S+$/i, message: "Invalid email address" },
+                        pattern: {
+                          value: /^\S+@\S+$/i,
+                          message: "Invalid email address",
+                        },
                       })}
                       type="email"
                       placeholder="Email Address *"
                       className={inputClass}
                     />
                     {errors.email && (
-                      <p className="text-red-400 text-xs mt-1 font-sans">{errors.email.message}</p>
+                      <p className="text-red-400 text-xs mt-1 font-sans">
+                        {errors.email.message}
+                      </p>
                     )}
                   </div>
 
@@ -197,13 +226,17 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   </select>
 
                   <textarea
-                    {...register("message", { required: "Please add a brief message" })}
+                    {...register("message", {
+                      required: "Please add a brief message",
+                    })}
                     placeholder="Your Message *"
                     rows={4}
                     className={cn(inputClass, "resize-none")}
                   />
                   {errors.message && (
-                    <p className="text-red-400 text-xs mt-1 font-sans">{errors.message.message}</p>
+                    <p className="text-red-400 text-xs mt-1 font-sans">
+                      {errors.message.message}
+                    </p>
                   )}
 
                   <Button

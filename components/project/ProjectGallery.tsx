@@ -7,38 +7,44 @@ import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ProjectGalleryProps {
-  images:     string[];
-  name:       string;
+  images: string[];
+  name: string;
   className?: string;
 }
 
-export default function ProjectGallery({ images, name, className }: ProjectGalleryProps) {
+export default function ProjectGallery({
+  images,
+  name,
+  className,
+}: ProjectGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const open  = (i: number) => setLightboxIndex(i);
+  const open = (i: number) => setLightboxIndex(i);
   const close = () => setLightboxIndex(null);
-  const prev  = () => setLightboxIndex((i) => (i === null || i === 0 ? images.length - 1 : i - 1));
-  const next  = () => setLightboxIndex((i) => (i === null ? 0 : (i + 1) % images.length));
+  const prev = () =>
+    setLightboxIndex((i) =>
+      i === null || i === 0 ? images.length - 1 : i - 1,
+    );
+  const next = () =>
+    setLightboxIndex((i) => (i === null ? 0 : (i + 1) % images.length));
 
-  // Keyboard navigation
   const onKey = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowLeft")  prev();
+    if (e.key === "ArrowLeft") prev();
     if (e.key === "ArrowRight") next();
-    if (e.key === "Escape")     close();
+    if (e.key === "Escape") close();
   };
 
   if (!images || images.length === 0) return null;
 
   return (
     <>
-      {/* Gallery Grid */}
       <div
         className={cn(
           "grid gap-2",
           images.length === 1 && "grid-cols-1",
           images.length === 2 && "grid-cols-2",
           images.length >= 3 && "grid-cols-2 md:grid-cols-3",
-          className
+          className,
         )}
       >
         {images.map((src, i) => (
@@ -47,7 +53,9 @@ export default function ProjectGallery({ images, name, className }: ProjectGalle
             onClick={() => open(i)}
             className={cn(
               "relative overflow-hidden bg-luxury-charcoal3 group cursor-zoom-in",
-              i === 0 && images.length >= 3 ? "md:col-span-2 md:row-span-2 h-64 md:h-auto" : "h-48 md:h-56"
+              i === 0 && images.length >= 3
+                ? "md:col-span-2 md:row-span-2 h-64 md:h-auto"
+                : "h-48 md:h-56",
             )}
           >
             <Image
@@ -67,7 +75,6 @@ export default function ProjectGallery({ images, name, className }: ProjectGalle
         ))}
       </div>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {lightboxIndex !== null && (
           <motion.div
@@ -79,7 +86,6 @@ export default function ProjectGallery({ images, name, className }: ProjectGalle
             onKeyDown={onKey}
             tabIndex={0}
           >
-            {/* Close */}
             <button
               onClick={close}
               className="absolute top-4 right-4 text-white/60 hover:text-white transition-colors z-10"
@@ -88,21 +94,21 @@ export default function ProjectGallery({ images, name, className }: ProjectGalle
               <X size={24} />
             </button>
 
-            {/* Counter */}
             <p className="absolute top-4 left-1/2 -translate-x-1/2 font-sans text-xs text-white/40 tracking-widest">
               {lightboxIndex + 1} / {images.length}
             </p>
 
-            {/* Prev */}
             <button
-              onClick={(e) => { e.stopPropagation(); prev(); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                prev();
+              }}
               className="absolute left-4 text-white/60 hover:text-white transition-colors z-10 p-2"
               aria-label="Previous image"
             >
               <ChevronLeft size={32} />
             </button>
 
-            {/* Image */}
             <motion.div
               key={lightboxIndex}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -121,9 +127,11 @@ export default function ProjectGallery({ images, name, className }: ProjectGalle
               />
             </motion.div>
 
-            {/* Next */}
             <button
-              onClick={(e) => { e.stopPropagation(); next(); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                next();
+              }}
               className="absolute right-4 text-white/60 hover:text-white transition-colors z-10 p-2"
               aria-label="Next image"
             >

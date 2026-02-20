@@ -5,7 +5,7 @@ import SectionWrapper from "@/components/layout/SectionWrapper";
 import SectionHeading from "@/components/ui/SectionHeading";
 import PropertyCard from "@/components/portfolio/PropertyCard";
 import Button from "@/components/ui/Button";
-import { getFeaturedProperties } from "@/lib/properties";
+import { getFeaturedProperties } from "@/utils/propertyutils";
 import { staggerContainerVariants, scaleInVariants } from "@/hooks/useScrollAnimation";
 
 export default function FeaturedProjects() {

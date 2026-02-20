@@ -1,14 +1,12 @@
-import Link   from "next/link";
-import Button  from "@/components/ui/Button";
+import Link from "next/link";
+import Button from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center bg-luxury-charcoal">
-      {/* Decorative number */}
       <span className="font-display text-[12rem] font-light leading-none text-luxury-gold/5 select-none absolute">
         404
       </span>
-
       <div className="relative flex flex-col items-center gap-6 max-w-md">
         <div className="flex items-center gap-3 mb-2">
           <span className="gold-rule" />
@@ -23,13 +21,17 @@ export default function NotFound() {
         </h1>
 
         <p className="font-sans text-sm text-luxury-muted leading-relaxed">
-          The page you&apos;re looking for may have been moved or removed.
-          Let us guide you back to something exceptional.
+          The page you&apos;re looking for may have been moved or removed. Let
+          us guide you back to something exceptional.
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center mt-2">
-          <Button href="/"          variant="gold"    size="lg">Back to Home</Button>
-          <Button href="/portfolio" variant="outline" size="lg">View Properties</Button>
+          <Button href="/" variant="gold" size="lg">
+            Back to Home
+          </Button>
+          <Button href="/portfolio" variant="outline" size="lg">
+            View Properties
+          </Button>
         </div>
       </div>
     </div>

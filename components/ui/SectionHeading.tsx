@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
-  eyebrow?:   string;   // Small label above the heading e.g. "Our Portfolio"
-  heading:    string;
+  eyebrow?: string;
+  heading: string;
   subheading?: string;
-  align?:     "left" | "center";
-  light?:     boolean;  // true = dark bg (default), false = light bg
+  align?: "left" | "center";
+  light?: boolean;
   className?: string;
 }
 
@@ -13,8 +13,8 @@ export default function SectionHeading({
   eyebrow,
   heading,
   subheading,
-  align     = "left",
-  light     = false,
+  align = "left",
+  light = false,
   className,
 }: SectionHeadingProps) {
   return (
@@ -22,7 +22,7 @@ export default function SectionHeading({
       className={cn(
         "flex flex-col gap-4",
         align === "center" && "items-center text-center",
-        className
+        className,
       )}
     >
       {eyebrow && (
@@ -40,7 +40,7 @@ export default function SectionHeading({
         className={cn(
           "font-display font-light leading-tight",
           "text-display-lg",
-          light ? "text-luxury-charcoal" : "text-luxury-cream"
+          light ? "text-luxury-charcoal" : "text-luxury-cream",
         )}
       >
         {heading}
@@ -50,7 +50,7 @@ export default function SectionHeading({
         <p
           className={cn(
             "font-sans text-base leading-relaxed max-w-xl",
-            light ? "text-luxury-charcoal/60" : "text-luxury-muted"
+            light ? "text-luxury-charcoal/60" : "text-luxury-muted",
           )}
         >
           {subheading}

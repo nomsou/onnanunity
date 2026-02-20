@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BedDouble, Bath, Maximize2, MapPin, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { formatPrice } from "@/lib/properties";
+import { formatPrice } from "@/utils/propertyutils";
 import Badge from "@/components/ui/Badge";
 import type { Property } from "@/types";
 

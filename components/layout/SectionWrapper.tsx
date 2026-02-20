@@ -1,17 +1,17 @@
 import { cn } from "@/lib/utils";
 
 interface SectionWrapperProps {
-  children:    React.ReactNode;
-  className?:  string;
-  id?:         string;
+  children: React.ReactNode;
+  className?: string;
+  id?: string;
   background?: "dark" | "dark2" | "light" | "transparent";
-  noPadding?:  boolean;
+  noPadding?: boolean;
 }
 
 const bgMap = {
-  dark:        "bg-luxury-charcoal",
-  dark2:       "bg-luxury-charcoal2",
-  light:       "bg-luxury-stone",
+  dark: "bg-luxury-charcoal",
+  dark2: "bg-luxury-charcoal2",
+  light: "bg-luxury-stone",
   transparent: "bg-transparent",
 };
 
@@ -20,7 +20,7 @@ export default function SectionWrapper({
   className,
   id,
   background = "dark",
-  noPadding  = false,
+  noPadding = false,
 }: SectionWrapperProps) {
   return (
     <section
@@ -28,12 +28,10 @@ export default function SectionWrapper({
       className={cn(
         bgMap[background],
         !noPadding && "py-section px-6 md:px-12 lg:px-20",
-        className
+        className,
       )}
     >
-      <div className="max-w-site mx-auto w-full">
-        {children}
-      </div>
+      <div className="max-w-site mx-auto w-full">{children}</div>
     </section>
   );
 }

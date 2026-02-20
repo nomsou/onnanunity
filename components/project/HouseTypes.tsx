@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { BedDouble, Bath, Maximize2 } from "lucide-react";
-import { formatPrice } from "@/lib/properties";
+import { formatPrice } from "@/utils/propertyutils";
 import type { PropertyUnit } from "@/types";
 
 interface HouseTypesProps {

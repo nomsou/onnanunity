@@ -5,40 +5,41 @@ import type { Testimonial } from "@/types";
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
-  className?:  string;
+  className?: string;
 }
 
-export default function TestimonialCard({ testimonial, className }: TestimonialCardProps) {
+export default function TestimonialCard({
+  testimonial,
+  className,
+}: TestimonialCardProps) {
   return (
     <div
       className={cn(
         "card-dark p-8 md:p-10 flex flex-col gap-6 h-full",
         "hover:border-luxury-gold/20 transition-all duration-500",
-        className
+        className,
       )}
     >
-      {/* Gold quote mark */}
       <Quote
         size={32}
         className="text-luxury-gold/40 fill-luxury-gold/20 shrink-0"
         aria-hidden
       />
 
-      {/* Stars */}
       {testimonial.rating && (
         <div className="flex gap-1">
           {Array.from({ length: testimonial.rating }).map((_, i) => (
-            <span key={i} className="text-luxury-gold text-xs">★</span>
+            <span key={i} className="text-luxury-gold text-xs">
+              ★
+            </span>
           ))}
         </div>
       )}
 
-      {/* Quote */}
       <p className="font-sans text-sm text-luxury-muted leading-relaxed flex-1 italic">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
 
-      {/* Author */}
       <div className="flex items-center gap-4 pt-4 border-t border-white/5">
         {testimonial.image ? (
           <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 bg-luxury-charcoal3">

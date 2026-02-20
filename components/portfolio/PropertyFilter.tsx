@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { getProperties } from "@/lib/properties";
+import { getProperties } from "@/utils/propertyutils";
 import PropertyCard from "@/components/portfolio/PropertyCard";
 import type { PropertyStatus } from "@/types";
 

@@ -2,11 +2,11 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface PageHeroProps {
-  heading:     string;
+  heading: string;
   subheading?: string;
-  eyebrow?:    string;
-  image?:      string;
-  className?:  string;
+  eyebrow?: string;
+  image?: string;
+  className?: string;
 }
 
 export default function PageHero({
@@ -21,10 +21,9 @@ export default function PageHero({
       className={cn(
         "relative min-h-[50vh] flex items-end pb-16 pt-36",
         "px-6 md:px-12 lg:px-20 overflow-hidden",
-        className
+        className,
       )}
     >
-      {/* Background Image or Gradient */}
       {image ? (
         <>
           <Image
@@ -41,10 +40,8 @@ export default function PageHero({
         <div className="absolute inset-0 bg-gradient-to-br from-luxury-charcoal via-luxury-charcoal2 to-luxury-charcoal" />
       )}
 
-      {/* Subtle gold accent line at bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-luxury-gold/30 to-transparent" />
 
-      {/* Content */}
       <div className="relative z-10 max-w-site mx-auto w-full">
         {eyebrow && (
           <div className="flex items-center gap-3 mb-4">

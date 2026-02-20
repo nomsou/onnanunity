@@ -9,7 +9,6 @@ interface ProjectHeroProps {
 export default function ProjectHero({ property }: ProjectHeroProps) {
   return (
     <section className="relative h-[75vh] min-h-[500px] overflow-hidden">
-      {/* Background Image */}
       {property.coverImage ? (
         <Image
           src={property.coverImage}
@@ -23,11 +22,9 @@ export default function ProjectHero({ property }: ProjectHeroProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-luxury-charcoal2 to-luxury-charcoal" />
       )}
 
-      {/* Layered overlays for depth */}
       <div className="absolute inset-0 bg-black/40" />
       <div className="absolute inset-0 bg-dark-gradient" />
 
-      {/* Content — anchored to bottom-left */}
       <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 lg:px-20 pb-14">
         <div className="max-w-site mx-auto">
           <Badge status={property.status} className="mb-5" />
