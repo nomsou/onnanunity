@@ -10,6 +10,7 @@ import Button from "@/components/ui/Button";
 import { getTeam } from "@/lib/team";
 import { siteStats } from "@/lib/utils";
 import { CheckCircle, Award, Users, Building2 } from "lucide-react";
+import mission from "@/public/images/hero/misson.png";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -136,7 +137,7 @@ export default function AboutPage() {
 
           <div className="relative h-[500px] overflow-hidden">
             <Image
-              src="/images/hero/about-image.jpg"
+              src={mission}
               alt="Onnan Unity — Our Story"
               fill
               className="object-cover"

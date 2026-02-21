@@ -167,6 +167,17 @@ export default function ProjectDetailPage({ params }: Props) {
         </div>
       </SectionWrapper>
 
+      {property.images && property.images.length > 0 && (
+        <SectionWrapper background="dark2" id="gallery">
+          <SectionHeading
+            eyebrow="Gallery"
+            heading="Sights from the Estate"
+            className="mb-12"
+          />
+          <ProjectGallery images={property.images} name={property.name} />
+        </SectionWrapper>
+      )}
+
       {property.features && property.features.length > 0 && (
         <SectionWrapper background="dark2" id="features">
           <SectionHeading
@@ -188,17 +199,6 @@ export default function ProjectDetailPage({ params }: Props) {
             className="mb-12"
           />
           <HouseTypes units={property.units} />
-        </SectionWrapper>
-      )}
-
-      {property.images && property.images.length > 0 && (
-        <SectionWrapper background="dark2" id="gallery">
-          <SectionHeading
-            eyebrow="Gallery"
-            heading="Sights from the Estate"
-            className="mb-12"
-          />
-          <ProjectGallery images={property.images} name={property.name} />
         </SectionWrapper>
       )}
 

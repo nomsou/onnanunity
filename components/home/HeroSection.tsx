@@ -54,7 +54,7 @@ export default function HeroSection() {
       >
         <motion.div className="absolute inset-0" style={{ y: imageY }}>
           <Image
-            src="/images/hero/hero-bg.jpg"
+            src="/images/hero/hero-bg.png"
             alt="Onnan Unity — Luxury Real Estate Abuja"
             fill
             className="object-cover scale-110"

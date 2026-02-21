@@ -7,6 +7,7 @@ import SectionWrapper from "@/components/layout/SectionWrapper";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import { fadeUpVariants } from "@/hooks/useScrollAnimation";
+import mission from "@/public/images/hero/misson.png";
 
 const pillars = [
   {
@@ -46,7 +47,7 @@ export default function MissionSection() {
           />
           <div className="relative h-[500px] lg:h-[600px] overflow-hidden">
             <Image
-              src="/images/hero/mission-image.jpg"
+              src={mission}
               alt="Onnan Unity — Our Mission"
               fill
               className="object-cover"
