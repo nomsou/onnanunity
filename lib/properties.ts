@@ -23,9 +23,10 @@ export const properties: Property[] = [
     coverImage: "/images/properties/askia-i/cover.jpg",
     images: [
       "/images/properties/askia-i/gallery-1.jpg",
-      "/images/properties/askia-i/gallery-1.jpg",
-      "/images/properties/askia-i/gallery-1.jpg",
-      "/images/properties/askia-i/gallery-1.jpg",
+      "/images/properties/askia-i/gallery-2.jpg",
+      "/images/properties/askia-i/gallery-3.jpg",
+      "/images/properties/askia-i/gallery-4.jpg",
+      "/images/properties/askia-i/gallery-5.jpg",
     ],
     features: [
       {
@@ -77,9 +78,10 @@ export const properties: Property[] = [
     sqft: 5100,
     coverImage: "/images/properties/askia-ii/cover.jpg",
     images: [
-      "/images/properties/askia-ii/cover.jpg",
-      "/images/properties/askia-ii/cover.jpg",
-      "/images/properties/askia-ii/cover.jpg",
+      "/images/properties/askia-ii/gallery-1.jpg",
+      "/images/properties/askia-ii/gallery-2.jpg",
+      "/images/properties/askia-ii/gallery-3.jpg",
+      "/images/properties/askia-ii/gallery-4.jpg",
     ],
     features: [
       {
@@ -132,12 +134,7 @@ export const properties: Property[] = [
     baths: 5,
     sqft: 5800,
     coverImage: "/images/properties/gana-villas/cover.jpg",
-    images: [
-      "/images/properties/gana-villas/cover.jpg",
-      "/images/properties/gana-villas/cover.jpg",
-      "/images/properties/gana-villas/cover.jpg",
-      "/images/properties/gana-villas/cover.jpg",
-    ],
+    images: ["/images/properties/gana-villas/cover.jpg"],
     features: [
       {
         icon: "Zap",
@@ -189,9 +186,9 @@ export const properties: Property[] = [
     sqft: 4500,
     coverImage: "/images/properties/mansa/cover.jpg",
     images: [
-      "/images/properties/mansa/cover.jpg",
-      "/images/properties/mansa/cover.jpg",
-      "/images/properties/mansa/cover.jpg",
+      "/images/properties/mansa/gallery-1.jpg",
+      "/images/properties/mansa/gallery-2.jpg",
+      "/images/properties/mansa/gallery-3.jpg",
     ],
     features: [
       {
@@ -243,9 +240,9 @@ export const properties: Property[] = [
     sqft: 4000,
     coverImage: "/images/properties/samori/cover.jpg",
     images: [
-      "/images/properties/samori/cover.jpg",
-      "/images/properties/samori/cover.jpg",
-      "/images/properties/samori/cover.jpg",
+      "/images/properties/samori/gallery-1.jpg",
+      "/images/properties/samori/gallery-2.jpg",
+      "/images/properties/samori/gallery-3.jpg",
     ],
     features: [
       {
@@ -297,8 +294,8 @@ export const properties: Property[] = [
     sqft: 4100,
     coverImage: "/images/properties/sonni/cover.jpg",
     images: [
-      "/images/properties/sonni/cover.jpg",
-      "/images/properties/sonni/cover.jpg",
+      "/images/properties/sonni/gallery-1.jpg",
+      "/images/properties/sonni/gallery-2.jpg",
     ],
     features: [
       {
@@ -351,8 +348,7 @@ export const properties: Property[] = [
     coverImage: "/images/properties/embe-terraces/cover.png",
     images: [
       "/images/properties/embe-terraces/gallery-1.png",
-      "/images/properties/embe-terraces/gallery-1.png",
-      "/images/properties/embe-terraces/gallery-1.png",
+      "/images/properties/embe-terraces/gallery-2.png",
     ],
     features: [
       {
