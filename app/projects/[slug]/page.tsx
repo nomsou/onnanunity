@@ -120,7 +120,7 @@ export default function ProjectDetailPage({ params }: Props) {
           </div>
 
           <div className="flex flex-col gap-0 border border-white/5 h-fit">
-            <div className="px-8 py-5 border-b border-white/5">
+            {/* <div className="px-8 py-5 border-b border-white/5">
               <p className="font-sans text-[10px] uppercase tracking-[0.25em] text-luxury-gold mb-1">
                 Starting Price
               </p>
@@ -129,7 +129,7 @@ export default function ProjectDetailPage({ params }: Props) {
                   ? formatPrice(property.priceFrom)
                   : "Contact Us"}
               </p>
-            </div>
+            </div> */}
 
             {[
               {

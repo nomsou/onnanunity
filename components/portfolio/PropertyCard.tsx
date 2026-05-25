@@ -126,14 +126,14 @@ export default function PropertyCard({
         </div>
 
         {/* Price */}
-        {property.priceFrom && (
+        {/* {property.priceFrom && (
           <p className="font-sans text-xs text-luxury-muted">
             From{" "}
             <span className="text-luxury-gold font-medium text-sm">
               {formatPrice(property.priceFrom)}
             </span>
           </p>
-        )}
+        )} */}
       </div>
 
       {/* Bottom gold line — expands on hover */}
