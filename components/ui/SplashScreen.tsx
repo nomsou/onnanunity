@@ -1,13 +1,13 @@
-// src/components/ui/SplashScreen.tsx
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function SplashScreen() {
   const [isMounted, setIsMounted] = useState(false);
-  const containerRef = useRef(null);
-  const logoRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const hasSeenSplash = sessionStorage.getItem("onnan_splash_seen");
@@ -35,6 +35,11 @@ export default function SplashScreen() {
             onComplete: () => {
               setIsMounted(false);
               document.body.style.overflow = "";
+
+              setTimeout(() => {
+                window.dispatchEvent(new Event("resize"));
+                ScrollTrigger.refresh();
+              }, 50);
             },
           });
         },
@@ -77,10 +82,20 @@ export default function SplashScreen() {
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-luxury-charcoal"
     >
       <div ref={logoRef} className="flex flex-col items-center text-center">
-        <span className="font-display text-3xl font-light tracking-[0.2em] text-luxury-cream">
-          ONNAN UNITY
-        </span>
-        <span className="font-sans text-[9px] tracking-[0.25em] text-luxury-gold uppercase mt-1">
+        <div className="flex items-center gap-2 justify-center">
+          <div className="relative w-12 h-12 md:w-14 md:h-14 overflow-hidden flex-shrink-0">
+            <img
+              src="/logo.png"
+              alt="Onnan Unity Brand Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <span className="font-display text-3xl font-light tracking-[0.2em] text-luxury-cream whitespace-nowrap">
+            ONNAN UNITY
+          </span>
+        </div>
+
+        <span className="font-sans text-[9px] tracking-[0.25em] text-luxury-gold uppercase mt-2.5">
           Est. 1999
         </span>
         <div className="h-px w-12 bg-luxury-gold/30 my-4" />
