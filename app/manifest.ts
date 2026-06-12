@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "Premium residential developments across Abuja's most prestigious addresses.",
     start_url: "/",
     display: "standalone",
-    background_color: "#0E0E0E",
-    theme_color: "#C9A84C",
+    background_color: "#F7F6F2",
+    theme_color: "#8B7A5C",
     icons: [
       {
         src: "/icons/icon-192.png",
