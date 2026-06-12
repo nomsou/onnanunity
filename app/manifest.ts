@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Onnan Unity | Luxury Real Estate",
+    name: "Onnan Unity | Real Estate Company Abuja",
     short_name: "Onnan Unity",
     description:
       "Premium residential developments across Abuja's most prestigious addresses.",

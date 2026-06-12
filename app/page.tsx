@@ -1,24 +1,21 @@
-import HeroSlideshow from "@/components/home/HeroSlideshow";
-import { getProperties } from "@/utils/propertyutils";
-import StatsSection from "@/components/home/StatsSection";
-import FeaturedProjects from "@/components/home/FeaturedProjects";
-import MissionSection from "@/components/home/MissionSection";
-import ServicesSection from "@/components/home/ServicesSection";
-import PartnersSection from "@/components/home/PartnersSection";
-import { OrganizationSchema } from "@/components/shared/StructuredData";
+import HeroSection from "@/components/sections/HeroSection";
+import StatsSection from "@/components/sections/StatsSection";
+import PropertiesSection from "@/components/sections/PropertiesSection";
+import BrandStorySection from "@/components/sections/BrandstorySection";
+import ServicesSection from "@/components/sections/ServicesSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import ContactSection from "@/components/sections/ContactSection";
 
-export default function HomePage() {
-  const properties = getProperties();
-
+export default function Home() {
   return (
     <>
-      <OrganizationSchema />
-      <HeroSlideshow properties={properties} />
+      <HeroSection />
       <StatsSection />
-      <FeaturedProjects />
-      <MissionSection />
+      <PropertiesSection />
+      <BrandStorySection />
       <ServicesSection />
-      <PartnersSection />
+      <TestimonialsSection />
+      <ContactSection />
     </>
   );
 }

@@ -21,7 +21,6 @@
   }
 
   html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -184,9 +183,22 @@
     transform 0.4s var(--ease-luxury);
 }
 
-/* Only show custom cursor on desktop devices that have one */
 @media (pointer: fine) {
   body {
     cursor: default;
   }
+}
+
+@keyframes updateProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+::-webkit-scrollbar {
+  height: 0;
+  width: 0;
 }
