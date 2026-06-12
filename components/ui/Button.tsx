@@ -7,7 +7,7 @@ interface ButtonProps {
   children: React.ReactNode;
   href?: string;
   onClick?: () => void;
-  variant?: "gold" | "outline" | "ghost";
+  variant?: "gold" | "outline" | "outlineLight" | "ghost";
   size?: "sm" | "md" | "lg";
   className?: string;
   type?: "button" | "submit" | "reset";
@@ -22,6 +22,8 @@ const variants = {
   gold: "bg-luxury-gold text-luxury-charcoal hover:bg-luxury-gold2 active:scale-[0.98]",
   outline:
     "border border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-luxury-charcoal active:scale-[0.98]",
+  outlineLight:
+    "border border-white/50 text-white hover:bg-white hover:text-ink hover:border-white",
   ghost:
     "text-luxury-gold hover:text-luxury-gold2 underline-offset-4 hover:underline",
 };

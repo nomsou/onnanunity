@@ -15,7 +15,9 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 60);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -31,19 +33,25 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
+  const isAtTop = !scrolled;
+  const isHomePage = pathname === "/";
+  const useTransparent = isHomePage && isAtTop;
+
   return (
     <>
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-luxury",
-          scrolled
-            ? "bg-luxury-charcoal/95 backdrop-blur-md border-b border-white/5 py-4"
-            : "bg-transparent py-6",
+          useTransparent ? "py-6" : "py-4 shadow-sm",
         )}
+        style={{
+          backgroundColor: useTransparent ? "transparent" : "#FFFFFF",
+          borderBottom: useTransparent ? "none" : "1px solid #E2DFD9",
+        }}
       >
         <div className="max-w-site mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-4 group">
-            <div className="relative w-14 h-14 overflow-hidden">
+            <div className="relative w-12 h-12 md:w-14 md:h-14 overflow-hidden">
               <img
                 src="/logo.png"
                 alt="Onnan Unity Logo"
@@ -53,7 +61,14 @@ export default function Navbar() {
               />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="font-display text-xl font-light tracking-[0.15em] text-luxury-cream group-hover:text-luxury-gold transition-colors duration-300">
+              <span
+                className={cn(
+                  "font-display text-lg md:text-xl font-light tracking-[0.15em] transition-colors duration-300",
+                  useTransparent
+                    ? "text-white group-hover:text-gilt"
+                    : "text-ink group-hover:text-accent",
+                )}
+              >
                 ONNAN UNITY
               </span>
             </div>
@@ -69,15 +84,20 @@ export default function Navbar() {
                   className={cn(
                     "font-sans text-[11px] tracking-widest uppercase transition-colors duration-300 relative group",
                     isActive
-                      ? "text-luxury-gold"
-                      : "text-luxury-muted hover:text-luxury-cream",
+                      ? useTransparent
+                        ? "text-gilt"
+                        : "text-accent"
+                      : useTransparent
+                        ? "text-white/70 hover:text-white"
+                        : "text-ink-light hover:text-ink",
                   )}
                 >
                   {link.label}
 
                   <span
                     className={cn(
-                      "absolute -bottom-1 left-0 h-px bg-luxury-gold transition-all duration-300",
+                      "absolute -bottom-1 left-0 h-px transition-all duration-300",
+                      useTransparent ? "bg-gilt" : "bg-accent",
                       isActive ? "w-full" : "w-0 group-hover:w-full",
                     )}
                   />
@@ -87,13 +107,28 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden lg:block">
-            <Button href="/contact" variant="outline" size="sm">
+            <Button
+              href="/contact"
+              variant="outline"
+              size="sm"
+              className={cn(
+                !useTransparent &&
+                  "border-accent text-accent hover:bg-accent hover:text-white",
+                useTransparent &&
+                  "border-white/50 text-white hover:bg-white hover:text-ink",
+              )}
+            >
               Request Site Visit
             </Button>
           </div>
 
           <button
-            className="lg:hidden text-luxury-cream hover:text-luxury-gold transition-colors"
+            className={cn(
+              "lg:hidden transition-colors",
+              useTransparent
+                ? "text-white hover:text-gilt"
+                : "text-ink hover:text-accent",
+            )}
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -109,12 +144,12 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="fixed inset-0 z-40 bg-luxury-charcoal flex flex-col"
+            className="fixed inset-0 z-40 flex flex-col bg-white"
           >
             <div className="flex justify-end px-6 pt-6">
               <button
                 onClick={() => setMobileOpen(false)}
-                className="text-luxury-muted hover:text-luxury-cream transition-colors"
+                className="text-ink-light hover:text-ink transition-colors"
                 aria-label="Close menu"
               >
                 <X size={24} />
@@ -132,11 +167,11 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "block font-display text-4xl font-light py-3 border-b border-white/5",
+                      "block font-display text-4xl font-light py-3 border-b border-border",
                       "transition-colors duration-300",
                       pathname === link.href
-                        ? "text-luxury-gold"
-                        : "text-luxury-cream hover:text-luxury-gold",
+                        ? "text-accent"
+                        : "text-ink hover:text-accent",
                     )}
                   >
                     {link.label}
@@ -161,7 +196,7 @@ export default function Navbar() {
               </motion.div>
             </nav>
 
-            <div className="px-10 pb-10 text-luxury-muted font-sans text-xs space-y-1">
+            <div className="px-10 pb-10 text-ink-light font-sans text-xs space-y-1">
               <p>2b Samuel A. Ogedengbe Crescent, Jabi, Abuja</p>
               <p>+234 806 032 8758</p>
               <p>info@onnanunity.com</p>

@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-cormorant: "Cormorant Garamond", Georgia, serif;
-  --font-dm-sans: "DM Sans", Helvetica, sans-serif;
+  --font-playfair: "Playfair Display", Georgia, serif;
+  --font-inter: "Inter", Helvetica, sans-serif;
   --ease-luxury: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -35,27 +35,27 @@
   }
 
   :focus-visible {
-    outline: 2px solid #c9a84c;
+    outline: 2px solid #8b7a5c;
     outline-offset: 3px;
   }
 
   ::selection {
-    background-color: rgba(201, 168, 76, 0.2);
-    color: #c9a84c;
+    background-color: rgba(139, 122, 92, 0.15);
+    color: #6b5e4e;
   }
 
   ::-webkit-scrollbar {
     width: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: #0e0e0e;
+    background: #f7f6f2;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(201, 168, 76, 0.25);
+    background: rgba(139, 122, 92, 0.3);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(201, 168, 76, 0.5);
+    background: rgba(139, 122, 92, 0.55);
   }
 
   img {
@@ -68,15 +68,16 @@
   h3,
   h4,
   h5 {
-    font-family: var(--font-cormorant);
-    font-weight: 300;
+    font-family: var(--font-playfair);
+    font-weight: 400;
     line-height: 1.1;
   }
 }
 
 @layer utilities {
+  /* Gold gradient now renders richly on a light background */
   .text-gold-gradient {
-    background: linear-gradient(135deg, #c9a84c 0%, #e8c97a 50%, #c9a84c 100%);
+    background: linear-gradient(135deg, #c9a96e 0%, #e8d5a8 50%, #c9a96e 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -86,12 +87,12 @@
     display: inline-block;
     width: 3rem;
     height: 1px;
-    background-color: #c9a84c;
+    background-color: #8b7a5c;
     flex-shrink: 0;
   }
 
   .card-dark {
-    @apply bg-luxury-charcoal2 border border-white/5;
+    @apply bg-luxury-charcoal2 border border-luxury-charcoal3;
   }
 
   .hover-lift {
@@ -106,7 +107,7 @@
     background: linear-gradient(
       180deg,
       transparent 30%,
-      rgba(14, 14, 14, 0.85) 100%
+      rgba(30, 27, 24, 0.75) 100%
     );
   }
 
@@ -120,7 +121,7 @@
     left: 0;
     width: 0;
     height: 1px;
-    background: #c9a84c;
+    background: #8b7a5c;
     transition: width 0.35s var(--ease-luxury);
   }
   .link-underline:hover::after {
@@ -130,9 +131,9 @@
   .skeleton {
     background: linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.03) 25%,
-      rgba(255, 255, 255, 0.07) 50%,
-      rgba(255, 255, 255, 0.03) 75%
+      rgba(30, 27, 24, 0.04) 25%,
+      rgba(30, 27, 24, 0.08) 50%,
+      rgba(30, 27, 24, 0.04) 75%
     );
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
@@ -183,12 +184,9 @@
     transform 0.4s var(--ease-luxury);
 }
 
+/* Only show custom cursor on desktop devices that have one */
 @media (pointer: fine) {
   body {
-    cursor: none;
-  }
-
-  iframe {
-    cursor: auto;
+    cursor: default;
   }
 }
