@@ -104,7 +104,7 @@ export default function ServicesSection() {
             <div className="text-luxury-gold transition-transform duration-300 group-hover:scale-105 w-fit">
               <item.icon size={28} />
             </div>
-            <span className="font-display text-5xl font-light text-luxury-gold/10 leading-none">
+            <span className="font-display text-5xl font-light text-luxury-muted leading-none">
               0{idx + 1}
             </span>
             <h3 className="font-display text-2xl font-light text-luxury-cream -mt-2">

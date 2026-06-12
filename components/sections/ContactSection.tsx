@@ -213,7 +213,7 @@ export default function ContactSection() {
                   I'm enquiring about... *
                 </option>
                 <option value="askia">Askia Portfolio Communities</option>
-                <option value="gana">Gana Street Luxury Villas</option>
+                <option value="gana">Gana Luxury Villas</option>
                 <option value="embe">Embe Terraces Framework</option>
                 <option value="construction">Civil Construction Arm</option>
                 <option value="solar">Solar Energy Engineering</option>

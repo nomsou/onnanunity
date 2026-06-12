@@ -86,9 +86,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="font-sans text-sm text-luxury-muted leading-relaxed max-w-sm">
-              Engineering, procurement, construction and real estate
-              development. Delivering infrastructure and high-value real estate
-              assets across Nigeria.
+              Engineering, construction and real estate development. Delivering
+              infrastructure and high-value real estate assets across Nigeria.
             </p>
             <div className="flex flex-col gap-3 mt-1">
               <a
@@ -217,9 +216,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="font-sans text-sm text-luxury-muted leading-relaxed max-w-sm">
-              Engineering, procurement, construction and real estate
-              development. Delivering infrastructure and high-value real estate
-              assets across Nigeria.
+              Engineering, construction and real estate development. Delivering
+              infrastructure and high-value real estate assets across Nigeria.
             </p>
             <div className="flex flex-col gap-2 mt-1">
               <a
