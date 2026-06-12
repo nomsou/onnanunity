@@ -53,11 +53,8 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-        <p className="hero-reveal font-sans text-xs md:text-sm tracking-[0.2em] uppercase text-white/90 mb-4 drop-shadow-md opacity-0">
-          Est. 1999 · Engineering, Construction & Real Estate
-        </p>
-
-        <h1 className="hero-reveal font-display font-light text-white text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.1] mb-6 opacity-0">
+        {/* Paragraph Removed to let the layout breathe cleanly */}
+        <h1 className="hero-reveal font-display font-light text-white text-[clamp(2rem,4.5vw,4rem)] leading-[1.15] mb-6 tracking-tight opacity-0">
           Redefining Architecture <br />
           <span className="text-gilt-light italic font-serif">
             Across Abuja
