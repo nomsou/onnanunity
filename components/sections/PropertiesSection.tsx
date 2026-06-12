@@ -1,3 +1,4 @@
+// src/components/sections/PropertiesSection.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -11,7 +12,6 @@ import type { Property } from "@/types";
 
 function MosaicGrid({ images, name }: { images: string[]; name: string }) {
   const count = images.length;
-
   if (count === 0) return null;
 
   if (count === 1) {
@@ -119,7 +119,6 @@ function MosaicGrid({ images, name }: { images: string[]; name: string }) {
     );
   }
 
-  // 6+
   const half = Math.ceil(count / 2);
   const row1 = images.slice(0, half);
   const row2 = images.slice(half);
@@ -317,13 +316,10 @@ function GallerySlide({
       className="property-gallery-slide relative w-screen h-full shrink-0 overflow-hidden bg-black"
       data-slide-type="gallery"
     >
-      {/* Mosaic */}
       <MosaicGrid images={allImages} name={property.name} />
 
-      {/* Dark overlay — lightens on enter */}
       <div className="gallery-overlay absolute inset-0 bg-black/55 pointer-events-none" />
 
-      {/* Watermark name */}
       <div
         className="gallery-watermark absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
         aria-hidden="true"
@@ -341,7 +337,6 @@ function GallerySlide({
         </span>
       </div>
 
-      {/* Top-left label */}
       <div
         className="gallery-label absolute top-24 md:top-28 left-14 md:left-20 lg:left-24 z-10 pointer-events-none"
         style={{ opacity: 0, transform: "translateY(16px)" }}
@@ -357,7 +352,6 @@ function GallerySlide({
         </p>
       </div>
 
-      {/* Property name + next cue bottom-right */}
       <div
         className="gallery-footer absolute bottom-12 right-8 md:right-14 z-10 text-right pointer-events-none"
         style={{ opacity: 0, transform: "translateY(16px)" }}
@@ -372,7 +366,6 @@ function GallerySlide({
         )}
       </div>
 
-      {/* Gold right-edge accent line */}
       <div className="absolute right-0 top-[10%] bottom-[10%] w-px bg-luxury-gold/20" />
     </div>
   );
@@ -397,7 +390,27 @@ export default function PropertiesSection() {
       const totalSlides = properties.length * 2;
       const getScrollAmount = () => (totalSlides - 1) * window.innerWidth;
 
-      // ── Master horizontal tween ──────────────────────────────────────
+      // ── NEW SECTION IMMERSIVE ENTRANCE TIMELINE ──────────────────────
+      // This sequence triggers immediately when the component rolls into view
+      const entranceTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%", // Triggers slightly before it hits the top viewport edge
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Initially hide the master track elements slightly below the fold
+      gsap.set(track, { y: 60, opacity: 0 });
+
+      entranceTl.to(track, {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "luxury", // Uses your premium cubic-bezier preset
+      });
+
+      // ── Master horizontal track mapping ──────────────────────────────
       hTweenRef.current = gsap.to(track, {
         x: () => -getScrollAmount(),
         ease: "none",
@@ -413,7 +426,7 @@ export default function PropertiesSection() {
 
       const hTween = hTweenRef.current;
 
-      // ── Per cover-slide animations ───────────────────────────────────
+      // Per cover-slide animations
       gsap.utils
         .toArray<HTMLElement>(".property-cover-slide")
         .forEach((slide) => {
@@ -430,7 +443,7 @@ export default function PropertiesSection() {
           const specs = slide.querySelector<HTMLElement>(".cover-specs");
           const cta = slide.querySelector<HTMLElement>(".cover-cta");
 
-          // Ken Burns on the cover image (scrubbed)
+          // Ken Burns parallax background
           if (bgImg) {
             gsap.fromTo(
               bgImg,
@@ -449,7 +462,7 @@ export default function PropertiesSection() {
             );
           }
 
-          // Gold rule scaleY reveal (toggle)
+          // Gold layout rule line
           if (goldRule) {
             gsap.to(goldRule, {
               scaleY: 1,
@@ -464,7 +477,7 @@ export default function PropertiesSection() {
             });
           }
 
-          // Eyebrow + section title (first slide only)
+          // Section Titles (Intro Card Only)
           if (eyebrow) {
             gsap.to(eyebrow, {
               opacity: 1,
@@ -495,7 +508,7 @@ export default function PropertiesSection() {
             });
           }
 
-          // Location badge
+          // Neighborhood location card info
           if (location) {
             gsap.to(location, {
               opacity: 1,
@@ -511,7 +524,7 @@ export default function PropertiesSection() {
             });
           }
 
-          // Name words stagger
+          // Brand Title Typographic Stagger
           if (nameWords.length) {
             gsap.to(nameWords, {
               opacity: 1,
@@ -528,7 +541,7 @@ export default function PropertiesSection() {
             });
           }
 
-          // Tagline
+          // Tagline text elements
           if (tagline) {
             gsap.to(tagline, {
               opacity: 1,
@@ -545,7 +558,7 @@ export default function PropertiesSection() {
             });
           }
 
-          // Specs
+          // Technical Specs
           if (specs) {
             gsap.to(specs, {
               opacity: 1,
@@ -562,7 +575,7 @@ export default function PropertiesSection() {
             });
           }
 
-          // CTA
+          // Action Link Callouts
           if (cta) {
             gsap.to(cta, {
               opacity: 1,
@@ -580,7 +593,6 @@ export default function PropertiesSection() {
           }
         });
 
-      // ── Per gallery-slide animations ─────────────────────────────────
       gsap.utils
         .toArray<HTMLElement>(".property-gallery-slide")
         .forEach((slide) => {
@@ -592,7 +604,6 @@ export default function PropertiesSection() {
           const footer = slide.querySelector<HTMLElement>(".gallery-footer");
           const tiles = slide.querySelectorAll<HTMLElement>(".mosaic-tile");
 
-          // Overlay lightens as slide enters
           if (overlay) {
             gsap.to(overlay, {
               opacity: 0.25,
@@ -607,7 +618,6 @@ export default function PropertiesSection() {
             });
           }
 
-          // Watermark reveal
           if (watermark) {
             gsap.to(watermark, {
               opacity: 0.055,
@@ -623,7 +633,6 @@ export default function PropertiesSection() {
             });
           }
 
-          // Mosaic tile clip-path reveal — staggered wipe from left
           if (tiles.length) {
             gsap.set(tiles, { clipPath: "inset(0 100% 0 0)" });
             gsap.to(tiles, {
@@ -640,7 +649,6 @@ export default function PropertiesSection() {
             });
           }
 
-          // Mosaic image parallax (scrubbed)
           slide.querySelectorAll<HTMLElement>(".mosaic-img").forEach((img) => {
             gsap.fromTo(
               img,
@@ -659,7 +667,6 @@ export default function PropertiesSection() {
             );
           });
 
-          // Label + footer fade in
           [label, footer].forEach((el, i) => {
             if (!el) return;
             gsap.to(el, {
@@ -690,22 +697,14 @@ export default function PropertiesSection() {
     >
       <div
         ref={horizontalTrackRef}
-        className="flex h-full will-change-transform"
+        className="flex h-full will-change-transform opacity-0"
         style={{ width: `${properties.length * 2 * 100}vw` }}
       >
         {properties.map((property, index) => (
-          <>
-            <CoverSlide
-              key={`cover-${property.id}`}
-              property={property}
-              index={index}
-            />
-            <GallerySlide
-              key={`gallery-${property.id}`}
-              property={property}
-              index={index}
-            />
-          </>
+          <div key={property.id} className="flex h-full shrink-0">
+            <CoverSlide property={property} index={index} />
+            <GallerySlide property={property} index={index} />
+          </div>
         ))}
       </div>
     </section>
