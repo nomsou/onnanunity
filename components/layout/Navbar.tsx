@@ -14,6 +14,7 @@ export default function Navbar() {
 
   const links = [
     { label: "Home", href: "#hero" },
+     { label: "The Madeira", href: "#anchor" }, 
     { label: "Portfolio", href: "#portfolio" },
     { label: "About", href: "#mission" },
     { label: "Services", href: "#services" },

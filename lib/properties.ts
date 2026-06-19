@@ -379,4 +379,62 @@ export const properties: Property[] = [
     ],
     isFeatured: true,
   },
+  // Add this to the properties array in lib/properties.ts
+  // {
+  //   id: "8",
+  //   slug: "madeira",
+  //   name: "The Madeira",
+  //   tagline: "Premium Luxury Living — Our Anchor Development",
+  //   description:
+  //     "The Madeira represents the pinnacle of Onnan Unity's commitment to excellence. " +
+  //     "This anchor development sets a new benchmark for premium living in Abuja, " +
+  //     "featuring unparalleled craftsmanship, prime location, and world-class amenities. " +
+  //     "Every detail has been meticulously curated to offer residents an extraordinary " +
+  //     "living experience that redefines luxury.",
+  //   location: "Prime Location, Abuja",
+  //   neighborhood: "Abuja",
+  //   type: "Villa",
+  //   status: "Coming Soon",
+  //   priceFrom: 350000000,
+  //   beds: 6,
+  //   baths: 5,
+  //   sqft: 6500,
+  //   coverImage: "/images/properties/madeira/cover-placeholder.jpg",
+  //   images: [
+  //     "/images/properties/madeira/gallery-1-placeholder.jpg",
+  //     "/images/properties/madeira/gallery-2-placeholder.jpg",
+  //     "/images/properties/madeira/gallery-3-placeholder.jpg",
+  //     "/images/properties/madeira/gallery-4-placeholder.jpg",
+  //     "/images/properties/madeira/gallery-5-placeholder.jpg",
+  //   ],
+  //   features: [
+  //     {
+  //       icon: "Zap",
+  //       title: "Solar Power",
+  //       description: "Full estate solar grid with battery backup.",
+  //     },
+  //     {
+  //       icon: "ShieldCheck",
+  //       title: "Premium Security",
+  //       description: "24/7 manned security with AI surveillance.",
+  //     },
+  //     {
+  //       icon: "Droplets",
+  //       title: "Infinity Pool",
+  //       description: "Private infinity-edge pool per villa.",
+  //     },
+  //     {
+  //       icon: "Dumbbell",
+  //       title: "Wellness Center",
+  //       description: "Fully equipped gym and spa facilities.",
+  //     },
+  //   ],
+  //   proximity: [
+  //     { label: "To CBD", value: "5 mins" },
+  //     { label: "To Airport", value: "20 mins" },
+  //     { label: "To Maitama", value: "3 mins" },
+  //   ],
+  //   isFeatured: true,
+  //   yearCompleted: 2025,
+  // },
 ];

@@ -21,8 +21,8 @@ export default function Footer() {
   ];
 
   const inProgressDevelopments = [
+    { label: "The Madeira ★", href: "#anchor" }, // Add star to highlight anchor
     { label: "Ganges Apartments", href: "#portfolio" },
-    { label: "The Madeira", href: "#portfolio" },
     { label: "Bangui Place", href: "#portfolio" },
     { label: "Neo-Classic Villas", href: "#portfolio" },
     { label: "Elbe Vista", href: "#portfolio" },

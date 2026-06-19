@@ -208,6 +208,7 @@ function DesktopGallery() {
   return (
     <section
       ref={sectionRef}
+      id="portfolio"
       className="relative w-full h-screen bg-black overflow-hidden"
     >
       <div ref={contentRef} className="relative w-full h-full">
@@ -428,7 +429,11 @@ function MobileGallery() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-black min-h-screen px-4 py-8">
+    <section
+      ref={sectionRef}
+      id="portfolio"
+      className="bg-black min-h-screen px-4 py-8"
+    >
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="mb-8 pt-8">
