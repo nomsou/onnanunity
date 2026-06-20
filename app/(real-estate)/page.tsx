@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <AnchorProjectSection />
-      <StatsSection />
+      {/* <StatsSection /> */}
 
       {properties.map((property, index) => (
         <div key={property.id}>
