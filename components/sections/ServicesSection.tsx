@@ -1,4 +1,3 @@
-// src/components/sections/ServicesSection.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -29,18 +28,6 @@ const services = [
       "Interior Finishing",
       "Landscaping",
       "Infrastructure",
-    ],
-  },
-  {
-    icon: Zap,
-    title: "Solar Power Solutions",
-    description:
-      "Sustainability is at the core of how we build. Through our engineering subsidiary, every development is equipped with localized solar power networks that minimize grid dependency.",
-    features: [
-      "Solar Installation",
-      "Battery Storage",
-      "Grid Integration",
-      "Maintenance",
     ],
   },
 ];
@@ -95,7 +82,7 @@ export default function ServicesSection() {
         </div>
       </div>
 
-      <div className="services-card-grid grid grid-cols-1 lg:grid-cols-3 gap-px bg-border-custom/30 border border-border-custom/30">
+      <div className="services-card-grid grid grid-cols-1 lg:grid-cols-2 gap-px bg-border-custom/30 border border-border-custom/30">
         {services.map((item, idx) => (
           <div
             key={idx}
