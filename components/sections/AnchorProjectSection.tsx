@@ -195,7 +195,7 @@ export default function AnchorProjectSection() {
             </div>
 
             <a
-              href="#footer"
+              href="https://www.instagram.com/onnanunityco"
               className="inline-flex items-center gap-3 font-sans text-xs font-medium uppercase tracking-widest text-[#C9A96E] hover:text-white transition-colors duration-300 group"
             >
               <span>Enquire About The Madeira</span>
@@ -223,7 +223,7 @@ export default function AnchorProjectSection() {
         </button>
 
         {allImages.length > 1 && (
-          <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-10 flex gap-1.5 px-4">
+          <div className="absolute bottom-40 sm:bottom-48 md:bottom-32 left-1/2 -translate-x-1/2 z-10 flex gap-1.5 px-4">
             {allImages.map((_, index) => (
               <button
                 key={index}

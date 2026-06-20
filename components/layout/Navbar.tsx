@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getProperties } from "@/utils/propertyutils";
 
@@ -11,6 +11,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const menuOverlayRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -36,7 +37,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close dropdown on click outside
+  // Close dropdown on click outside (desktop)
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -70,6 +71,8 @@ export default function Navbar() {
         duration: 0.4,
         ease: "power3.in",
       });
+      // Reset mobile dropdown when closing menu
+      setMobileDropdownOpen(false);
     }
   }, [mobileOpen]);
 
@@ -77,7 +80,18 @@ export default function Navbar() {
     e.preventDefault();
     setMobileOpen(false);
     setDropdownOpen(false);
+    setMobileDropdownOpen(false);
     const element = document.querySelector(target);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleMobilePropertyClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    setMobileDropdownOpen(false);
+    const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -203,8 +217,9 @@ export default function Navbar() {
 
           <div className="hidden lg:block">
             <a
-              href="#contact"
-              onClick={(e) => handleScrollTo(e, "#contact")}
+              href="https://www.instagram.com/onnanunityco"
+              target="_blank"
+              rel="noopener noreferrer"
               className={cn(
                 "inline-flex items-center justify-center border font-sans font-medium tracking-widest uppercase text-[10px] px-5 py-2.5 transition-all duration-300",
                 useTransparent
@@ -212,7 +227,7 @@ export default function Navbar() {
                   : "border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-white",
               )}
             >
-              Request Site Visit
+              Inquire Now
             </a>
           </div>
 
@@ -233,53 +248,72 @@ export default function Navbar() {
 
       <div
         ref={menuOverlayRef}
-        className="fixed inset-0 z-40 bg-luxury-charcoal flex flex-col justify-center px-10 transform translate-x-full lg:hidden border-l border-border-custom"
+        className="fixed inset-0 z-40 bg-luxury-charcoal flex flex-col justify-start pt-24 px-8 transform translate-x-full lg:hidden border-l border-border-custom overflow-y-auto"
       >
-        <nav className="flex flex-col gap-3">
+        <nav className="flex flex-col gap-1 w-full max-w-md mx-auto">
           {links.map((link) => (
-            <div key={link.label}>
+            <div key={link.label} className="w-full">
               {link.dropdown ? (
-                <>
-                  <span className="mob-link block font-display text-4xl font-light py-3 border-b border-border-custom text-luxury-cream opacity-0">
-                    {link.label}
-                  </span>
-                  <div className="pl-6 flex flex-col gap-2 mb-2">
-                    {link.items.map((item: { label: string; href: string }) => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setMobileOpen(false);
-                          const element = document.querySelector(item.href);
-                          if (element) {
-                            element.scrollIntoView({ behavior: "smooth" });
-                          }
-                        }}
-                        className="font-sans text-sm text-luxury-muted hover:text-luxury-gold transition-colors"
-                      >
-                        {item.label}
-                      </a>
-                    ))}
+                <div className="w-full">
+                  <button
+                    onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                    className="mob-link flex items-center justify-between w-full font-display text-3xl font-light py-3 border-b border-border-custom text-luxury-cream hover:text-luxury-gold transition-colors opacity-0"
+                  >
+                    <span>{link.label}</span>
+                    <ChevronRight
+                      size={20}
+                      className={`transition-transform duration-300 ${
+                        mobileDropdownOpen ? "rotate-90" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {/* Mobile Dropdown Items */}
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      mobileDropdownOpen
+                        ? "max-h-[600px] opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <div className="pl-4 py-2 flex flex-col gap-1">
+                      {link.items.map(
+                        (item: { label: string; href: string }) => (
+                          <a
+                            key={item.label}
+                            href={item.href}
+                            onClick={(e) =>
+                              handleMobilePropertyClick(e, item.href)
+                            }
+                            className="font-sans text-base text-luxury-muted hover:text-luxury-gold transition-colors py-2 px-2 hover:bg-luxury-charcoal2 rounded"
+                          >
+                            {item.label}
+                          </a>
+                        ),
+                      )}
+                    </div>
                   </div>
-                </>
+                </div>
               ) : (
                 <a
                   href={link.href}
                   onClick={(e) => handleScrollTo(e, link.href)}
-                  className="mob-link block font-display text-4xl font-light py-3 border-b border-border-custom text-luxury-cream hover:text-luxury-gold transition-colors opacity-0"
+                  className="mob-link block font-display text-3xl font-light py-3 border-b border-border-custom text-luxury-cream hover:text-luxury-gold transition-colors opacity-0"
                 >
                   {link.label}
                 </a>
               )}
             </div>
           ))}
+
           <a
-            href="#contact"
-            onClick={(e) => handleScrollTo(e, "#contact")}
-            className="mob-link border border-luxury-gold text-luxury-gold text-xs font-sans font-medium tracking-widest uppercase py-3.5 text-center mt-8 hover:bg-luxury-gold hover:text-luxury-charcoal transition-colors opacity-0"
+            href="https://www.instagram.com/onnanunityco"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileOpen(false)}
+            className="mob-link border border-luxury-gold text-luxury-gold text-xs font-sans font-medium tracking-widest uppercase py-3.5 text-center mt-6 hover:bg-luxury-gold hover:text-luxury-charcoal transition-colors opacity-0"
           >
-            Request Site Visit
+            Inquire Now
           </a>
         </nav>
       </div>

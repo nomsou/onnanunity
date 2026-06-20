@@ -11,30 +11,30 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   const completedDevelopments = [
-    { label: "Askia I", href: "#portfolio" },
-    { label: "Askia II", href: "#portfolio" },
-    { label: "Gana Villas", href: "#portfolio" },
-    { label: "Mansa", href: "#portfolio" },
-    { label: "Samori Villas", href: "#portfolio" },
-    { label: "Sonni Villas", href: "#portfolio" },
-    { label: "Embe Terraces", href: "#portfolio" },
+    { label: "Askia I", href: "#askia-i" },
+    { label: "Askia II", href: "#askia-ii" },
+    { label: "Gana Villas", href: "#gana-villas" },
+    { label: "Mansa", href: "#mansa" },
+    { label: "Samori Villas", href: "#samori" },
+    { label: "Sonni Villas", href: "#sonni" },
+    { label: "Embe Terraces", href: "#embe-terraces" },
   ];
 
   const inProgressDevelopments = [
-    { label: "The Madeira ★", href: "#anchor" }, // Add star to highlight anchor
-    { label: "Ganges Apartments", href: "#portfolio" },
-    { label: "Bangui Place", href: "#portfolio" },
-    { label: "Neo-Classic Villas", href: "#portfolio" },
-    { label: "Elbe Vista", href: "#portfolio" },
-    { label: "Ziva Villas", href: "#portfolio" },
+    { label: "The Madeira ★", href: "#anchor" },
+    { label: "Ganges Heights", href: "#ganges-heights" },
+    { label: "Bangui Place", href: "#bangui-place" },
+    { label: "Neo-Classic Villas", href: "#neo-classic-villas" },
+    { label: "Elbe Vista", href: "#elbe-vista" },
+    { label: "Ziva Villas", href: "#ziva-villas" },
   ];
 
   const navLinks = [
-    { label: "Home", href: "#hero" },
+    { label: "The Madeira", href: "#anchor" },
     { label: "Portfolio", href: "#portfolio" },
     { label: "About", href: "#mission" },
     { label: "Services", href: "#services" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "#footer" },
   ];
 
   useEffect(() => {

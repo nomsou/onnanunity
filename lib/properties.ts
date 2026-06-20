@@ -19,7 +19,7 @@ export const properties: Property[] = [
     priceFrom: 180000000,
     beds: 5,
     baths: 3,
-    sqm: 390, // 4200 sqft ≈ 390 sqm
+    sqm: 390,
     coverImage: "/images/properties/askia-i/cover.jpg",
     images: [
       "/images/properties/askia-i/gallery-1.jpg",
@@ -75,7 +75,7 @@ export const properties: Property[] = [
     priceFrom: 220000000,
     beds: 5,
     baths: 4,
-    sqm: 474, // 5100 sqft ≈ 474 sqm
+    sqm: 474,
     coverImage: "/images/properties/askia-ii/cover.jpg",
     images: [
       "/images/properties/askia-ii/gallery-1.jpg",
@@ -132,7 +132,7 @@ export const properties: Property[] = [
     priceFrom: 250000000,
     beds: 5,
     baths: 5,
-    sqm: 539, // 5800 sqft ≈ 539 sqm
+    sqm: 539,
     coverImage: "/images/properties/gana-villas/cover.jpg",
     images: ["/images/properties/gana-villas/cover.jpg"],
     features: [
@@ -183,7 +183,7 @@ export const properties: Property[] = [
     priceFrom: 150000000,
     beds: 5,
     baths: 4,
-    sqm: 418, // 4500 sqft ≈ 418 sqm
+    sqm: 418,
     coverImage: "/images/properties/mansa/cover.jpg",
     images: [
       "/images/properties/mansa/gallery-1.jpg",
@@ -237,7 +237,7 @@ export const properties: Property[] = [
     priceFrom: 165000000,
     beds: 5,
     baths: 3,
-    sqm: 372, // 4000 sqft ≈ 372 sqm
+    sqm: 372,
     coverImage: "/images/properties/samori/cover.jpg",
     images: [
       "/images/properties/samori/gallery-1.jpg",
@@ -291,7 +291,7 @@ export const properties: Property[] = [
     priceFrom: 175000000,
     beds: 5,
     baths: 3,
-    sqm: 381, // 4100 sqft ≈ 381 sqm
+    sqm: 381,
     coverImage: "/images/properties/sonni/cover.jpg",
     images: [
       "/images/properties/sonni/gallery-1.jpg",
@@ -344,7 +344,7 @@ export const properties: Property[] = [
     priceFrom: 95000000,
     beds: 4,
     baths: 3,
-    sqm: 260, // 2800 sqft ≈ 260 sqm
+    sqm: 260,
     coverImage: "/images/properties/embe-terraces/cover.png",
     images: [
       "/images/properties/embe-terraces/gallery-1.png",
@@ -378,5 +378,289 @@ export const properties: Property[] = [
       { label: "To Jabi", value: "5 mins" },
     ],
     isFeatured: true,
+  },
+
+  // ============================================================
+  // NEW PROPERTIES - Each with unique images
+  // ============================================================
+
+  {
+    id: "8",
+    slug: "ganges-heights",
+    name: "Ganges Heights",
+    tagline: "Elevated Living with Panoramic Views",
+    description:
+      "Ganges Heights offers a new standard of elevated living with breathtaking panoramic views. " +
+      "This premium development combines contemporary architecture with thoughtful design, " +
+      "creating homes that are both visually stunning and functionally superior. " +
+      "Residents enjoy unparalleled comfort with world-class amenities and meticulous attention to detail.",
+    location: "Ganges Street, Abuja",
+    neighborhood: "Abuja",
+    type: "Villa",
+    status: "Coming Soon",
+    priceFrom: 195000000,
+    beds: 5,
+    baths: 4,
+    sqm: 445,
+    coverImage:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80",
+      "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80",
+      "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80",
+    ],
+    features: [
+      {
+        icon: "Zap",
+        title: "Solar Power",
+        description: "Comprehensive solar energy system with battery storage.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Premium Security",
+        description: "24/7 professional security with advanced surveillance.",
+      },
+      {
+        icon: "Waves",
+        title: "Smart Home",
+        description: "Fully integrated smart home automation.",
+      },
+      {
+        icon: "Dumbbell",
+        title: "Fitness Center",
+        description: "State-of-the-art gym and wellness facilities.",
+      },
+    ],
+    proximity: [
+      { label: "To CBD", value: "12 mins" },
+      { label: "To Airport", value: "25 mins" },
+      { label: "To Maitama", value: "8 mins" },
+    ],
+    isFeatured: false,
+  },
+
+  {
+    id: "9",
+    slug: "bangui-place",
+    name: "Bangui Place",
+    tagline: "Sophisticated Urban Living in the Heart of Abuja",
+    description:
+      "Bangui Place redefines urban sophistication with its prime location and exceptional design. " +
+      "This exclusive development offers a harmonious blend of luxury and convenience, " +
+      "providing residents with easy access to the city's finest amenities while maintaining " +
+      "a serene and private living environment.",
+    location: "Bangui Street, Abuja",
+    neighborhood: "Abuja",
+    type: "Villa",
+    status: "Coming Soon",
+    priceFrom: 210000000,
+    beds: 5,
+    baths: 5,
+    sqm: 500,
+    coverImage:
+      "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80",
+      "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1920&q=80",
+      "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80",
+      "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1920&q=80",
+    ],
+    features: [
+      {
+        icon: "Zap",
+        title: "Solar Installation",
+        description: "High-capacity solar power system with backup.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Security System",
+        description: "Comprehensive security with biometric access.",
+      },
+      {
+        icon: "Droplets",
+        title: "Swimming Pool",
+        description: "Private swimming pool with sundeck.",
+      },
+      {
+        icon: "Trees",
+        title: "Landscaped Gardens",
+        description: "Beautifully manicured outdoor spaces.",
+      },
+    ],
+    proximity: [
+      { label: "To CBD", value: "10 mins" },
+      { label: "To Airport", value: "22 mins" },
+      { label: "To Maitama", value: "5 mins" },
+    ],
+    isFeatured: false,
+  },
+
+  {
+    id: "10",
+    slug: "neo-classic-villas",
+    name: "Neo-Classic Villas",
+    tagline: "Timeless Elegance Meets Modern Luxury",
+    description:
+      "Neo-Classic Villas represents the perfect fusion of classical architectural elegance " +
+      "and contemporary living standards. Each residence is meticulously designed to offer " +
+      "generous spaces, premium finishes, and an atmosphere of refined sophistication. " +
+      "These villas are a testament to timeless design and uncompromising quality.",
+    location: "Neo-Classic Estate, Abuja",
+    neighborhood: "Abuja",
+    type: "Villa",
+    status: "Coming Soon",
+    priceFrom: 240000000,
+    beds: 6,
+    baths: 6,
+    sqm: 580,
+    coverImage:
+      "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1920&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1920&q=80",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&q=80",
+      "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1920&q=80",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&q=80",
+    ],
+    features: [
+      {
+        icon: "Zap",
+        title: "Solar Energy",
+        description: "Premium solar installation with full backup.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Advanced Security",
+        description: "Multi-layer security system with monitoring.",
+      },
+      {
+        icon: "Dumbbell",
+        title: "Wellness Center",
+        description: "Private gym, spa, and wellness facilities.",
+      },
+      {
+        icon: "Droplets",
+        title: "Infinity Pool",
+        description: "Luxurious infinity-edge swimming pool.",
+      },
+    ],
+    proximity: [
+      { label: "To CBD", value: "15 mins" },
+      { label: "To Airport", value: "20 mins" },
+      { label: "To Maitama", value: "10 mins" },
+    ],
+    isFeatured: false,
+  },
+
+  {
+    id: "11",
+    slug: "elbe-vista",
+    name: "Elbe Vista",
+    tagline: "Where Luxury Meets Serenity",
+    description:
+      "Elbe Vista offers a sanctuary of tranquility amidst the vibrant energy of Abuja. " +
+      "This thoughtfully designed development provides residents with a harmonious blend " +
+      "of modern luxury and natural beauty, creating an idyllic setting for discerning " +
+      "homeowners who value privacy, comfort, and elegance.",
+    location: "Elbe Crescent, Abuja",
+    neighborhood: "Abuja",
+    type: "Villa",
+    status: "Coming Soon",
+    priceFrom: 185000000,
+    beds: 5,
+    baths: 4,
+    sqm: 430,
+    coverImage:
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80",
+    ],
+    features: [
+      {
+        icon: "Zap",
+        title: "Solar Power",
+        description: "Efficient solar energy system with battery storage.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Gated Security",
+        description: "Secure gated community with 24/7 surveillance.",
+      },
+      {
+        icon: "Trees",
+        title: "Green Spaces",
+        description: "Beautiful landscaped gardens and walking paths.",
+      },
+      {
+        icon: "Car",
+        title: "Parking",
+        description: "Ample covered parking for residents and guests.",
+      },
+    ],
+    proximity: [
+      { label: "To CBD", value: "14 mins" },
+      { label: "To Airport", value: "26 mins" },
+      { label: "To Maitama", value: "9 mins" },
+    ],
+    isFeatured: false,
+  },
+
+  {
+    id: "12",
+    slug: "ziva-villas",
+    name: "Ziva Villas",
+    tagline: "Elevate Your Lifestyle in These Exceptional Villas",
+    description:
+      "Ziva Villas embodies the pinnacle of luxurious living with its exceptional design " +
+      "and premium amenities. Each villa is crafted to offer expansive interiors, " +
+      "superior craftsmanship, and the perfect balance of privacy and community living. " +
+      "Experience a lifestyle that truly elevates your everyday living.",
+    location: "Ziva Estate, Abuja",
+    neighborhood: "Abuja",
+    type: "Villa",
+    status: "Coming Soon",
+    priceFrom: 230000000,
+    beds: 6,
+    baths: 5,
+    sqm: 560,
+    coverImage:
+      "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1920&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1920&q=80",
+      "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80",
+      "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1920&q=80",
+      "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80",
+    ],
+    features: [
+      {
+        icon: "Zap",
+        title: "Solar Installation",
+        description: "Comprehensive solar power system with backup.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Premium Security",
+        description: "Advanced security with 24/7 professional monitoring.",
+      },
+      {
+        icon: "Droplets",
+        title: "Luxury Pool",
+        description: "Private swimming pool with elegant design.",
+      },
+      {
+        icon: "Dumbbell",
+        title: "Gym & Spa",
+        description: "Exclusive fitness and wellness facilities.",
+      },
+    ],
+    proximity: [
+      { label: "To CBD", value: "13 mins" },
+      { label: "To Airport", value: "24 mins" },
+      { label: "To Maitama", value: "7 mins" },
+    ],
+    isFeatured: false,
   },
 ];

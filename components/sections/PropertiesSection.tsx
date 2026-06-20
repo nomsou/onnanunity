@@ -14,17 +14,17 @@ import {
 } from "lucide-react";
 import type { Property } from "@/types";
 
-interface PropertyFullscreenSectionProps {
+interface PropertiesSectionProps {
   property: Property;
   index: number;
   total: number;
 }
 
-export default function PropertyFullscreenSection({
+export default function PropertiesSection({
   property,
   index,
   total,
-}: PropertyFullscreenSectionProps) {
+}: PropertiesSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -170,10 +170,12 @@ export default function PropertyFullscreenSection({
             </div>
 
             <a
-              href="#contact"
+              href="https://www.instagram.com/onnanunityco"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 font-sans text-xs font-medium uppercase tracking-widest text-[#C9A96E] hover:text-white transition-colors duration-300 group"
             >
-              <span>Inquire About Availability</span>
+              <span>Inquire About {property.name}</span>
               <ArrowRight
                 size={14}
                 className="transition-transform duration-300 group-hover:translate-x-1.5"
@@ -216,7 +218,7 @@ export default function PropertyFullscreenSection({
 
         {/* Image dots */}
         {allImages.length > 1 && (
-          <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-10 flex gap-1.5 px-4">
+          <div className="absolute bottom-40 sm:bottom-48 md:bottom-32 left-1/2 -translate-x-1/2 z-10 flex gap-1.5 px-4">
             {allImages.map((_, index) => (
               <button
                 key={index}
@@ -226,6 +228,7 @@ export default function PropertyFullscreenSection({
                     ? "w-6 bg-[#C9A96E]"
                     : "w-3 bg-white/30 hover:bg-white/50"
                 }`}
+                aria-label={`Go to image ${index + 1}`}
               />
             ))}
           </div>
