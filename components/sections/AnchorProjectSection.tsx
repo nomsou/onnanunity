@@ -128,18 +128,6 @@ export default function AnchorProjectSection() {
             },
           },
         );
-
-        // gsap.to(scrollHintRef.current, {
-        //   opacity: 0,
-        //   duration: 0.4,
-        //   ease: "power1.out",
-        //   scrollTrigger: {
-        //     trigger: section,
-        //     start: "top top",
-        //     end: "80% top",
-        //     scrub: true,
-        //   },
-        // });
       }
     }, sectionRef);
 
@@ -174,9 +162,9 @@ export default function AnchorProjectSection() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
         </div>
 
-        <div className="property-info absolute bottom-0 left-0 right-0 p-8 md:p-12 z-10">
+        <div className="property-info absolute bottom-20 sm:bottom-24 md:bottom-0 left-0 right-0 p-6 sm:p-8 md:p-12 z-10">
           <div className="max-w-4xl">
-            <div className="flex items-center gap-3 mb-3">
+            <div className="flex items-center gap-3 mb-1.5 md:mb-3">
               <MapPin size={14} className="text-[#C9A96E] shrink-0" />
               <span className="font-sans text-xs uppercase tracking-widest font-medium text-[#C9A96E]">
                 {MADEIRA.neighborhood}, Abuja
@@ -184,32 +172,32 @@ export default function AnchorProjectSection() {
             </div>
 
             <h2
-              className="font-display font-light text-white leading-tight mb-4"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+              className="font-display font-light text-white leading-tight mb-1.5 md:mb-4"
+              style={{ fontSize: "clamp(2rem, 6vw, 5rem)" }}
             >
               {MADEIRA.name}
             </h2>
 
-            <p className="font-sans text-white/70 font-light leading-relaxed mb-6 max-w-xl text-sm md:text-base">
+            <p className="font-sans text-white/70 font-light leading-relaxed mb-3 md:mb-6 max-w-xl text-xs sm:text-sm md:text-base">
               {MADEIRA.tagline}
             </p>
 
-            <div className="flex flex-wrap items-center gap-6 mb-6">
+            <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-3 md:mb-6">
               <div className="flex items-center gap-2">
                 <Maximize2 size={16} className="text-[#C9A96E]/80" />
-                <span className="font-sans text-sm text-white/80">
+                <span className="font-sans text-xs sm:text-sm text-white/80">
                   {MADEIRA.sqm} m²
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <BedDouble size={16} className="text-[#C9A96E]/80" />
-                <span className="font-sans text-sm text-white/80">
+                <span className="font-sans text-xs sm:text-sm text-white/80">
                   {MADEIRA.beds} Beds
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Bath size={16} className="text-[#C9A96E]/80" />
-                <span className="font-sans text-sm text-white/80">
+                <span className="font-sans text-xs sm:text-sm text-white/80">
                   {MADEIRA.baths} Baths
                 </span>
               </div>
@@ -244,7 +232,7 @@ export default function AnchorProjectSection() {
         </button>
 
         {allImages.length > 1 && (
-          <div className="absolute bottom-40 sm:bottom-48 md:bottom-32 left-1/2 -translate-x-1/2 z-10 flex gap-1.5 px-4">
+          <div className="absolute bottom-[8rem] sm:bottom-[9.5rem] md:bottom-32 left-1/2 -translate-x-1/2 z-10 flex gap-1.5 px-4">
             {allImages.map((_, index) => (
               <button
                 key={index}
@@ -268,10 +256,10 @@ export default function AnchorProjectSection() {
               next.scrollIntoView({ behavior: "smooth" });
             }
           }}
-          className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 cursor-pointer group"
+          className="absolute bottom-5 sm:bottom-5 md:bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 cursor-pointer group"
           style={{ opacity: 0 }}
         >
-          <span className="font-sans text-[8px] uppercase tracking-[0.25em] text-white/50 group-hover:text-white/80 transition-colors duration-300">
+          <span className="font-sans text-[8px] uppercase tracking-[0.25em] text-white/60 group-hover:text-white/90 transition-colors duration-300">
             Scroll down
           </span>
           <ChevronDown
