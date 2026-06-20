@@ -77,15 +77,12 @@ export default function BrandStorySection() {
             </span>
           </div>
           <h2 className="font-display font-light text-3xl md:text-5xl text-luxury-cream leading-tight">
-            Redefine luxury living by delivering exceptional real estate
-            experiences.
+            Built to last. Designed to inspire.
           </h2>
-          <p className="font-sans text-sm text-luxury-muted leading-relaxed">
-            Onnan Unity is renowned for its meticulous attention to detail,
-            ensuring that every aspect of a luxury property is impeccably
-            crafted and maintained. From exquisite finishes and luxurious
-            amenities to the seamless integration of smart home technology, we
-            set the standard for what premium living in Abuja should feel like.
+          <p className="font-sans text-sm text-luxury-muted leading-relaxed max-w-lg">
+            Onnan Unity delivers premium real estate across Abuja's most
+            sought-after neighborhoods. Every home is crafted with precision and
+            purpose.
           </p>
 
           <div className="flex flex-col gap-4 pt-2">
@@ -99,9 +96,6 @@ export default function BrandStorySection() {
                   <h4 className="font-sans text-sm font-medium text-luxury-cream mb-0.5">
                     {pillar.title}
                   </h4>
-                  <p className="font-sans text-xs text-luxury-muted leading-relaxed">
-                    {pillar.description}
-                  </p>
                 </div>
               </div>
             ))}
