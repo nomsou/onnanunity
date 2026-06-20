@@ -11,6 +11,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
 } from "lucide-react";
 
 const MADEIRA = {
@@ -39,6 +40,7 @@ const MADEIRA = {
 export default function AnchorProjectSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const scrollHintRef = useRef<HTMLDivElement>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const allImages = MADEIRA.images;
@@ -105,18 +107,44 @@ export default function AnchorProjectSection() {
           },
         );
       }
+
+      if (scrollHintRef.current) {
+        gsap.fromTo(
+          scrollHintRef.current,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 1,
+            delay: 1.2,
+            ease: "power2.out",
+            onComplete: () => {
+              gsap.to(scrollHintRef.current, {
+                y: 10,
+                duration: 0.9,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut",
+              });
+            },
+          },
+        );
+
+        // gsap.to(scrollHintRef.current, {
+        //   opacity: 0,
+        //   duration: 0.4,
+        //   ease: "power1.out",
+        //   scrollTrigger: {
+        //     trigger: section,
+        //     start: "top top",
+        //     end: "80% top",
+        //     scrub: true,
+        //   },
+        // });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
-
-  // useEffect(() => {
-  //   if (allImages.length <= 1) return;
-  //   const timer = setInterval(() => {
-  //     setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
-  //   }, 5000);
-  //   return () => clearInterval(timer);
-  // }, [allImages.length]);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
@@ -148,13 +176,6 @@ export default function AnchorProjectSection() {
 
         <div className="property-info absolute bottom-0 left-0 right-0 p-8 md:p-12 z-10">
           <div className="max-w-4xl">
-            {/* <div className="flex items-center gap-3 mb-3">
-              <span className="text-[#C9A96E] font-sans text-[10px] uppercase tracking-[0.25em] font-medium">
-                ★ Anchor Project
-              </span>
-              <span className="w-8 h-px bg-[#C9A96E]/50" />
-            </div> */}
-
             <div className="flex items-center gap-3 mb-3">
               <MapPin size={14} className="text-[#C9A96E] shrink-0" />
               <span className="font-sans text-xs uppercase tracking-widest font-medium text-[#C9A96E]">
@@ -239,13 +260,24 @@ export default function AnchorProjectSection() {
           </div>
         )}
 
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none">
-          <span className="font-sans text-[8px] uppercase tracking-[0.25em] text-white/30">
-            Scroll
+        <div
+          ref={scrollHintRef}
+          onClick={() => {
+            const next = sectionRef.current?.nextElementSibling;
+            if (next) {
+              next.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+          className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 cursor-pointer group"
+          style={{ opacity: 0 }}
+        >
+          <span className="font-sans text-[8px] uppercase tracking-[0.25em] text-white/50 group-hover:text-white/80 transition-colors duration-300">
+            Scroll down
           </span>
-          <div className="flex gap-1">
-            <div className="w-8 h-0.5 rounded-full bg-[#C9A96E]" />
-          </div>
+          <ChevronDown
+            size={16}
+            className="text-[#C9A96E] group-hover:text-white transition-colors duration-300"
+          />
         </div>
       </div>
     </section>
