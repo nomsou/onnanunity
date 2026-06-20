@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Building2, HardHat, Zap } from "lucide-react";
+import { Building2, HardHat } from "lucide-react";
 
 const services = [
   {
