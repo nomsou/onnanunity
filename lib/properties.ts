@@ -177,7 +177,7 @@ export const properties: Property[] = [
       "planned community. Wide tree-lined internal roads, manicured communal gardens, and a " +
       "clubhouse set the tone for a neighbourhood that prioritises quality of life above all else.",
     location: "Mansa, Abuja",
-    neighborhood: "Abuja",
+    neighborhood: "Katampe Extenstion",
     type: "Villa",
     status: "Ongoing",
     priceFrom: 150000000,
