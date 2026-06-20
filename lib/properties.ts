@@ -394,7 +394,7 @@ export const properties: Property[] = [
       "This premium development combines contemporary architecture with thoughtful design, " +
       "creating homes that are both visually stunning and functionally superior. " +
       "Residents enjoy unparalleled comfort with world-class amenities and meticulous attention to detail.",
-    location: "Ganges Street, Abuja",
+    location: "Maitama, Abuja",
     neighborhood: "Abuja",
     type: "Villa",
     status: "Coming Soon",
