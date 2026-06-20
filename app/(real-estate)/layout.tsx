@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import SplashScreen from "@/components/ui/SplashScreen";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import { OrganizationSchema } from "@/components/shared/StructuredData";
 
 export const metadata: Metadata = {
@@ -18,8 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <OrganizationSchema />
-        <SplashScreen />
-        {children}
+        <SmoothScroll>
+          <SplashScreen />
+          <ScrollProgress />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

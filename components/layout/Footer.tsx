@@ -37,6 +37,11 @@ export default function Footer() {
     { label: "Contact", href: "#footer" },
   ];
 
+  const serviceLinks = [
+    { label: "Real Estate", href: "#/" },
+    { label: "Engineering", href: "/engineering-services" },
+  ];
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
@@ -134,6 +139,32 @@ export default function Footer() {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleSectionScroll(e, link.href)}
+                  className="font-sans text-sm text-luxury-muted hover:text-luxury-cream transition-colors duration-300 w-fit"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          <div className="footer-fade-up flex flex-col gap-4 w-[12%]">
+            <h4 className="font-sans text-[10px] uppercase tracking-[0.2em] text-luxury-gold font-medium">
+              Services
+            </h4>
+            <nav className="flex flex-col gap-2">
+              {serviceLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => {
+                    if (link.href.startsWith("#")) {
+                      e.preventDefault();
+                      const element = document.querySelector(link.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }
+                  }}
                   className="font-sans text-sm text-luxury-muted hover:text-luxury-cream transition-colors duration-300 w-fit"
                 >
                   {link.label}
@@ -262,6 +293,32 @@ export default function Footer() {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleSectionScroll(e, link.href)}
+                  className="font-sans text-sm text-luxury-muted hover:text-luxury-cream transition-colors duration-300 w-fit"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          <div className="footer-fade-up flex flex-col gap-4">
+            <h4 className="font-sans text-[10px] uppercase tracking-[0.2em] text-luxury-gold font-medium">
+              Services
+            </h4>
+            <nav className="flex flex-col gap-2">
+              {serviceLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => {
+                    if (link.href.startsWith("#")) {
+                      e.preventDefault();
+                      const element = document.querySelector(link.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }
+                  }}
                   className="font-sans text-sm text-luxury-muted hover:text-luxury-cream transition-colors duration-300 w-fit"
                 >
                   {link.label}

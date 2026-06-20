@@ -23,7 +23,7 @@ export default function Home() {
       ))}
 
       <BrandStorySection />
-      <ServicesSection />
+      {/* <ServicesSection /> */}
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Building2, HardHat } from "lucide-react";
@@ -17,6 +18,7 @@ const services = [
       "Project Management",
       "Quality Assurance",
     ],
+    href: "#portfolio",
   },
   {
     icon: HardHat,
@@ -29,6 +31,7 @@ const services = [
       "Landscaping",
       "Infrastructure",
     ],
+    href: "/engineering-services",
   },
 ];
 
@@ -59,6 +62,14 @@ export default function ServicesSection() {
     return () => ctx.revert();
   }, []);
 
+  const handleClick = (href: string, e: React.MouseEvent) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    }
+    // Otherwise (e.g. "/engineering-services") let Next's Link navigate normally.
+  };
+
   return (
     <section
       ref={containerRef}
@@ -84,9 +95,11 @@ export default function ServicesSection() {
 
       <div className="services-card-grid grid grid-cols-1 lg:grid-cols-2 gap-px bg-border-custom/30 border border-border-custom/30">
         {services.map((item, idx) => (
-          <div
+          <Link
             key={idx}
-            className="service-panel-card bg-luxury-charcoal p-10 flex flex-col gap-6 group hover:bg-luxury-charcoal2 transition-colors duration-300"
+            href={item.href}
+            onClick={(e) => handleClick(item.href, e)}
+            className="service-panel-card bg-luxury-charcoal p-10 flex flex-col gap-6 group hover:bg-luxury-charcoal2 transition-colors duration-300 cursor-pointer"
           >
             <div className="text-luxury-gold transition-transform duration-300 group-hover:scale-105 w-fit">
               <item.icon size={28} />
@@ -112,7 +125,7 @@ export default function ServicesSection() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

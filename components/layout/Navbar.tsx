@@ -11,10 +11,14 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+  const [mobileServicesDropdownOpen, setMobileServicesDropdownOpen] =
+    useState(false);
   const navRef = useRef<HTMLElement>(null);
   const menuOverlayRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const servicesDropdownRef = useRef<HTMLDivElement>(null);
 
   const properties = getProperties();
 
@@ -26,8 +30,16 @@ export default function Navbar() {
       dropdown: true,
       items: properties.map((p) => ({ label: p.name, href: `#${p.slug}` })),
     },
+    {
+      label: "Services",
+      href: "#services",
+      dropdown: true,
+      items: [
+        { label: "Real Estate Development", href: "/" },
+        { label: "Engineering Services", href: "/engineering-services" },
+      ],
+    },
     { label: "About", href: "#mission" },
-    { label: "Services", href: "#services" },
     { label: "Contact", href: "#footer" },
   ];
 
@@ -37,7 +49,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close dropdown on click outside (desktop)
+  // Close dropdowns on click outside (desktop)
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -45,6 +57,12 @@ export default function Navbar() {
         !dropdownRef.current.contains(e.target as Node)
       ) {
         setDropdownOpen(false);
+      }
+      if (
+        servicesDropdownRef.current &&
+        !servicesDropdownRef.current.contains(e.target as Node)
+      ) {
+        setServicesDropdownOpen(false);
       }
     };
     document.addEventListener("click", handleClickOutside);
@@ -71,26 +89,44 @@ export default function Navbar() {
         duration: 0.4,
         ease: "power3.in",
       });
-      // Reset mobile dropdown when closing menu
+      // Reset mobile dropdowns when closing menu
       setMobileDropdownOpen(false);
+      setMobileServicesDropdownOpen(false);
     }
   }, [mobileOpen]);
 
   const handleScrollTo = (e: React.MouseEvent, target: string) => {
     e.preventDefault();
+
+    // If it's a URL path (not a hash), use window.location
+    if (!target.startsWith("#")) {
+      window.location.href = target;
+      return;
+    }
+
     setMobileOpen(false);
     setDropdownOpen(false);
+    setServicesDropdownOpen(false);
     setMobileDropdownOpen(false);
+    setMobileServicesDropdownOpen(false);
     const element = document.querySelector(target);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const handleMobilePropertyClick = (e: React.MouseEvent, href: string) => {
+  const handleMobileItemClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
+
+    // If it's a URL path (not a hash), use window.location
+    if (!href.startsWith("#")) {
+      window.location.href = href;
+      return;
+    }
+
     setMobileOpen(false);
     setMobileDropdownOpen(false);
+    setMobileServicesDropdownOpen(false);
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -150,9 +186,23 @@ export default function Navbar() {
             {links.map((link) => (
               <div key={link.label} className="relative group">
                 {link.dropdown ? (
-                  <div ref={dropdownRef}>
+                  <div
+                    ref={
+                      link.label === "Portfolio"
+                        ? dropdownRef
+                        : servicesDropdownRef
+                    }
+                  >
                     <button
-                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                      onClick={() => {
+                        if (link.label === "Portfolio") {
+                          setDropdownOpen(!dropdownOpen);
+                          setServicesDropdownOpen(false);
+                        } else if (link.label === "Services") {
+                          setServicesDropdownOpen(!servicesDropdownOpen);
+                          setDropdownOpen(false);
+                        }
+                      }}
                       className={cn(
                         "font-sans text-[11px] tracking-widest uppercase transition-colors relative py-2 flex items-center gap-1",
                         useTransparent
@@ -163,12 +213,18 @@ export default function Navbar() {
                       {link.label}
                       <ChevronDown
                         size={12}
-                        className={`transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
+                        className={`transition-transform duration-200 ${
+                          (link.label === "Portfolio" && dropdownOpen) ||
+                          (link.label === "Services" && servicesDropdownOpen)
+                            ? "rotate-180"
+                            : ""
+                        }`}
                       />
                     </button>
 
                     {/* Dropdown Menu */}
-                    {dropdownOpen && (
+                    {(link.label === "Portfolio" && dropdownOpen) ||
+                    (link.label === "Services" && servicesDropdownOpen) ? (
                       <div className="absolute top-full left-0 mt-2 bg-white shadow-lg border border-border-custom min-w-[200px] py-2 z-50">
                         {link.items.map(
                           (item: { label: string; href: string }) => (
@@ -177,7 +233,18 @@ export default function Navbar() {
                               href={item.href}
                               onClick={(e) => {
                                 e.preventDefault();
-                                setDropdownOpen(false);
+                                if (link.label === "Portfolio") {
+                                  setDropdownOpen(false);
+                                } else if (link.label === "Services") {
+                                  setServicesDropdownOpen(false);
+                                }
+
+                                // If it's a URL path (not a hash), use window.location
+                                if (!item.href.startsWith("#")) {
+                                  window.location.href = item.href;
+                                  return;
+                                }
+
                                 const element = document.querySelector(
                                   item.href,
                                 );
@@ -194,7 +261,7 @@ export default function Navbar() {
                           ),
                         )}
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 ) : (
                   <a
@@ -256,14 +323,28 @@ export default function Navbar() {
               {link.dropdown ? (
                 <div className="w-full">
                   <button
-                    onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                    onClick={() => {
+                      if (link.label === "Portfolio") {
+                        setMobileDropdownOpen(!mobileDropdownOpen);
+                        setMobileServicesDropdownOpen(false);
+                      } else if (link.label === "Services") {
+                        setMobileServicesDropdownOpen(
+                          !mobileServicesDropdownOpen,
+                        );
+                        setMobileDropdownOpen(false);
+                      }
+                    }}
                     className="mob-link flex items-center justify-between w-full font-display text-3xl font-light py-3 border-b border-border-custom text-luxury-cream hover:text-luxury-gold transition-colors opacity-0"
                   >
                     <span>{link.label}</span>
                     <ChevronRight
                       size={20}
                       className={`transition-transform duration-300 ${
-                        mobileDropdownOpen ? "rotate-90" : ""
+                        (link.label === "Portfolio" && mobileDropdownOpen) ||
+                        (link.label === "Services" &&
+                          mobileServicesDropdownOpen)
+                          ? "rotate-90"
+                          : ""
                       }`}
                     />
                   </button>
@@ -271,7 +352,8 @@ export default function Navbar() {
                   {/* Mobile Dropdown Items */}
                   <div
                     className={`overflow-hidden transition-all duration-300 ${
-                      mobileDropdownOpen
+                      (link.label === "Portfolio" && mobileDropdownOpen) ||
+                      (link.label === "Services" && mobileServicesDropdownOpen)
                         ? "max-h-[600px] opacity-100"
                         : "max-h-0 opacity-0"
                     }`}
@@ -282,9 +364,7 @@ export default function Navbar() {
                           <a
                             key={item.label}
                             href={item.href}
-                            onClick={(e) =>
-                              handleMobilePropertyClick(e, item.href)
-                            }
+                            onClick={(e) => handleMobileItemClick(e, item.href)}
                             className="font-sans text-base text-luxury-muted hover:text-luxury-gold transition-colors py-2 px-2 hover:bg-luxury-charcoal2 rounded"
                           >
                             {item.label}
