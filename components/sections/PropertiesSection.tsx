@@ -270,11 +270,11 @@ export default function PropertiesSection({
           className="absolute bottom-5 sm:bottom-5 md:bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 cursor-pointer group"
           style={{ opacity: 0 }}
         >
-          <span className="font-sans text-[8px] uppercase tracking-[0.25em] text-white/60 group-hover:text-white/90 transition-colors duration-300">
+          <span className="font-sans text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70 group-hover:text-white transition-colors duration-300">
             Scroll down
           </span>
           <ChevronDown
-            size={16}
+            size={18}
             className="text-[#C9A96E] group-hover:text-white transition-colors duration-300"
           />
         </div>
