@@ -254,7 +254,7 @@ export default function EngineeringServicesPage() {
             </p>
           </div>
           <a
-            href="https://www.instagram.com/onnanunityco"
+            href="#contact"
             className="inline-flex items-center gap-2 bg-luxury-gold text-luxury-charcoal font-sans font-medium tracking-widest uppercase text-xs px-8 py-4 hover:bg-luxury-gold2 transition-all duration-300 shrink-0"
           >
             Get In Touch
@@ -278,7 +278,7 @@ export default function EngineeringServicesPage() {
           Speak with our engineering team
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mb-12">
           <div className="eng-contact-reveal flex items-start gap-4">
             <div className="w-10 h-10 border border-border-custom/60 flex items-center justify-center text-luxury-gold shrink-0">
               <MapPin size={14} />
@@ -309,45 +309,65 @@ export default function EngineeringServicesPage() {
             </div>
           </div>
           <div className="eng-contact-reveal flex items-start gap-4">
-            <div className="w-10 h-10 border border-border-custom/60 flex items-center justify-center text-luxury-gold shrink-0">
-              <Mail size={14} />
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-luxury-gold mb-0.5">
-                Email Us
-              </p>
-              <a
-                href="mailto:info@onnanunity.com"
-                className="font-sans text-xs text-luxury-cream hover:text-luxury-gold transition-colors"
-              >
-                info@onnanunity.com
-              </a>
-            </div>
+            <Link
+              href="mailto:info@onnanunity.com"
+              className="flex items-start gap-4 text-luxury-muted hover:text-luxury-gold transition-colors duration-300 group"
+            >
+              <div className="w-10 h-10 border border-border-custom/60 flex items-center justify-center text-luxury-gold shrink-0 group-hover:border-luxury-gold transition-colors">
+                <Mail size={14} />
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-luxury-gold mb-0.5">
+                  Email Us
+                </p>
+                <span className="font-sans text-xs text-luxury-cream group-hover:text-luxury-gold transition-colors">
+                  info@onnanunity.com
+                </span>
+              </div>
+            </Link>
           </div>
-        </div>
-
-        <div className="eng-contact-reveal flex items-center gap-4">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-luxury-gold">
-            Follow Us
-          </p>
-          <a
-            href="https://www.instagram.com/onnanunityco"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-9 h-9 border border-border-custom/60 flex items-center justify-center text-luxury-muted hover:text-luxury-gold hover:border-luxury-gold transition-colors duration-300"
-            aria-label="Onnan Unity on Instagram"
-          >
-            <Instagram size={14} />
-          </a>
-          <a
-            href="https://www.linkedin.com/company/onnan-unity-company-limited/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-9 h-9 border border-border-custom/60 flex items-center justify-center text-luxury-muted hover:text-luxury-gold hover:border-luxury-gold transition-colors duration-300"
-            aria-label="Onnan Unity on LinkedIn"
-          >
-            <Linkedin size={14} />
-          </a>
+          <div className="eng-contact-reveal flex items-start gap-4">
+            <Link
+              href="https://www.instagram.com/onnanunityco"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-4 text-luxury-muted hover:text-luxury-gold transition-colors duration-300 group"
+              aria-label="Onnan Unity on Instagram"
+            >
+              <div className="w-10 h-10 border border-border-custom/60 flex items-center justify-center text-luxury-gold shrink-0 group-hover:border-luxury-gold transition-colors">
+                <Instagram size={14} />
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-luxury-gold mb-0.5">
+                  Instagram
+                </p>
+                <span className="font-sans text-xs text-luxury-cream group-hover:text-luxury-gold transition-colors">
+                  @onnanunityco
+                </span>
+              </div>
+            </Link>
+          </div>
+          <div className="eng-contact-reveal flex items-start gap-4">
+            <Link
+              href="https://www.linkedin.com/company/onnan-unity-company-limited/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-4 text-luxury-muted hover:text-luxury-gold transition-colors duration-300 group"
+              aria-label="Onnan Unity on LinkedIn"
+            >
+              <div className="w-10 h-10 border border-border-custom/60 flex items-center justify-center text-luxury-gold shrink-0 group-hover:border-luxury-gold transition-colors">
+                <Linkedin size={14} />
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-luxury-gold mb-0.5">
+                  LinkedIn
+                </p>
+                <span className="font-sans text-xs text-luxury-cream group-hover:text-luxury-gold transition-colors">
+                  Onnan Unity
+                </span>
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
 
