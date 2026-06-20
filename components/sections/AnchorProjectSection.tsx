@@ -8,11 +8,11 @@ import {
   Bath,
   Maximize2,
   MapPin,
+  ArrowRight,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 
-// Madeira data with real placeholder images from the internet
 const MADEIRA = {
   name: "The Madeira",
   tagline: "The Pinnacle of Premium Living",
@@ -22,11 +22,10 @@ const MADEIRA = {
     "featuring unparalleled craftsmanship, prime location, and world-class amenities. " +
     "Every detail has been meticulously curated to offer residents an extraordinary " +
     "living experience that redefines luxury.",
-  neighborhood: "Abuja",
+  neighborhood: "Maitama",
   beds: 6,
   baths: 5,
   sqft: 6500,
-  // Using picsum.photos for beautiful random images
   images: [
     "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80",
     "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80",
@@ -39,204 +38,215 @@ const MADEIRA = {
 
 export default function AnchorProjectSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const allImages = MADEIRA.images;
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      const content = contentRef.current;
+      if (!section || !content) return;
+
       gsap.fromTo(
-        ".anchor-content",
-        { opacity: 0, scale: 0.98 },
+        content,
+        { opacity: 0, scale: 0.95 },
         {
           opacity: 1,
           scale: 1,
-          duration: 1.4,
+          duration: 1.2,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
+            trigger: section,
+            start: "top 90%",
             toggleActions: "play none none reverse",
           },
         },
       );
 
-      gsap.fromTo(
-        ".anchor-reveal",
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-            toggleActions: "play none none reverse",
+      const image = section.querySelector(".gallery-image");
+      if (image) {
+        gsap.fromTo(
+          image,
+          { scale: 1.1, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 1.5,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: image,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
           },
-        },
-      );
+        );
+      }
+
+      const info = section.querySelector(".property-info");
+      if (info) {
+        gsap.fromTo(
+          info,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.3,
+            scrollTrigger: {
+              trigger: info,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          },
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   useEffect(() => {
-    if (MADEIRA.images.length <= 1) return;
+    if (allImages.length <= 1) return;
     const timer = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % MADEIRA.images.length);
+      setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [allImages.length]);
 
-  const currentImage = MADEIRA.images[currentImageIndex];
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % MADEIRA.images.length);
+    setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
   };
+
   const prevImage = () => {
     setCurrentImageIndex(
-      (prev) => (prev - 1 + MADEIRA.images.length) % MADEIRA.images.length,
+      (prev) => (prev - 1 + allImages.length) % allImages.length,
     );
   };
 
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen min-h-[680px] w-full overflow-hidden bg-black"
       id="anchor"
+      className="relative w-full h-screen bg-black overflow-hidden"
     >
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-opacity duration-700"
-          style={{ backgroundImage: `url(${currentImage})` }}
-        />
-        {/* Much lighter gradient - images should be visible */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-luxury-gold/5 via-transparent to-luxury-gold/5" />
-      </div>
+      <div ref={contentRef} className="relative w-full h-full">
+        <div className="relative w-full h-full">
+          <img
+            src={allImages[currentImageIndex]}
+            alt="The Madeira"
+            className="gallery-image w-full h-full object-cover transition-opacity duration-500"
+          />
 
-      {/* Main Content - Clean, no badges */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 max-w-5xl mx-auto anchor-content">
-        {/* Removed Flagship Development eyebrow - felt intrusive */}
-
-        <h1 className="anchor-reveal font-display font-light text-white text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.1] mb-4">
-          {MADEIRA.name}
-        </h1>
-
-        <p className="anchor-reveal font-sans text-white/80 text-sm md:text-base max-w-2xl leading-relaxed mb-6">
-          {MADEIRA.tagline}
-        </p>
-
-        {/* <div className="anchor-reveal flex flex-wrap items-center justify-center gap-6 mb-8">
-          <div className="flex items-center gap-2">
-            <Maximize2 size={16} className="text-luxury-gold/80" />
-            <span className="font-sans text-sm text-white/80">
-              {MADEIRA.sqft.toLocaleString()} ft²
-            </span>
-          </div>
-          <div className="w-px h-6 bg-white/10" />
-          <div className="flex items-center gap-2">
-            <BedDouble size={16} className="text-luxury-gold/80" />
-            <span className="font-sans text-sm text-white/80">
-              {MADEIRA.beds} Beds
-            </span>
-          </div>
-          <div className="w-px h-6 bg-white/10" />
-          <div className="flex items-center gap-2">
-            <Bath size={16} className="text-luxury-gold/80" />
-            <span className="font-sans text-sm text-white/80">
-              {MADEIRA.baths} Baths
-            </span>
-          </div>
-          <div className="w-px h-6 bg-white/10" />
-          <div className="flex items-center gap-2">
-            <MapPin size={16} className="text-luxury-gold/80" />
-            <span className="font-sans text-sm text-white/80">
-              {MADEIRA.neighborhood}
-            </span>
-          </div>
-        </div> */}
-
-        <div className="anchor-reveal flex flex-wrap gap-4">
-          <button
-            onClick={() =>
-              document
-                .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="bg-luxury-gold text-luxury-charcoal font-sans font-medium tracking-widest uppercase text-xs px-10 py-4 hover:bg-luxury-gold2 transition-all duration-300 cursor-pointer"
-          >
-            Enquire Now
-          </button>
-          <button
-            onClick={() =>
-              document
-                .getElementById("portfolio")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="border border-white/40 text-white font-sans font-medium tracking-widest uppercase text-xs px-10 py-4 hover:bg-white hover:text-luxury-cream transition-all duration-300 cursor-pointer"
-          >
-            View All Properties
-          </button>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
         </div>
-      </div>
 
-      {/* Image Navigation Controls */}
-      {MADEIRA.images.length > 1 && (
-        <>
-          <button
-            onClick={prevImage}
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full transition-all duration-300 border border-white/10 hover:border-luxury-gold/30 backdrop-blur-sm"
-            aria-label="Previous image"
-          >
-            <ChevronLeft size={24} />
-          </button>
-          <button
-            onClick={nextImage}
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full transition-all duration-300 border border-white/10 hover:border-luxury-gold/30 backdrop-blur-sm"
-            aria-label="Next image"
-          >
-            <ChevronRight size={24} />
-          </button>
-        </>
-      )}
+        <div className="property-info absolute bottom-0 left-0 right-0 p-8 md:p-12 z-10">
+          <div className="max-w-4xl">
+            {/* <div className="flex items-center gap-3 mb-3">
+              <span className="text-[#C9A96E] font-sans text-[10px] uppercase tracking-[0.25em] font-medium">
+                ★ Anchor Project
+              </span>
+              <span className="w-8 h-px bg-[#C9A96E]/50" />
+            </div> */}
 
-      {/* Image Dots - cleaner, minimal */}
-      {MADEIRA.images.length > 1 && (
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-2">
-          {MADEIRA.images.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentImageIndex(idx)}
-              className={`h-1 rounded-full transition-all duration-300 ${
-                idx === currentImageIndex
-                  ? "w-8 bg-luxury-gold"
-                  : "w-3 bg-white/30 hover:bg-white/50"
-              }`}
-              aria-label={`Go to image ${idx + 1}`}
-            />
-          ))}
+            <div className="flex items-center gap-3 mb-3">
+              <MapPin size={14} className="text-[#C9A96E] shrink-0" />
+              <span className="font-sans text-xs uppercase tracking-widest font-medium text-[#C9A96E]">
+                {MADEIRA.neighborhood}, Abuja
+              </span>
+            </div>
+
+            <h2
+              className="font-display font-light text-white leading-tight mb-4"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+            >
+              {MADEIRA.name}
+            </h2>
+
+            <p className="font-sans text-white/70 font-light leading-relaxed mb-6 max-w-xl text-sm md:text-base">
+              {MADEIRA.tagline}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-6 mb-6">
+              <div className="flex items-center gap-2">
+                <Maximize2 size={16} className="text-[#C9A96E]/80" />
+                <span className="font-sans text-sm text-white/80">
+                  {MADEIRA.sqft.toLocaleString()} ft²
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <BedDouble size={16} className="text-[#C9A96E]/80" />
+                <span className="font-sans text-sm text-white/80">
+                  {MADEIRA.beds} Beds
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Bath size={16} className="text-[#C9A96E]/80" />
+                <span className="font-sans text-sm text-white/80">
+                  {MADEIRA.baths} Baths
+                </span>
+              </div>
+            </div>
+
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-3 font-sans text-xs font-medium uppercase tracking-widest text-[#C9A96E] hover:text-white transition-colors duration-300 group"
+            >
+              <span>Enquire About The Madeira</span>
+              <ArrowRight
+                size={14}
+                className="transition-transform duration-300 group-hover:translate-x-1.5"
+              />
+            </a>
+          </div>
         </div>
-      )}
 
-      {/* Image counter */}
-      {MADEIRA.images.length > 1 && (
-        <div className="absolute bottom-8 right-8 z-10 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10">
-          <span className="font-sans text-[10px] tracking-[0.2em] text-white/50">
-            {String(currentImageIndex + 1).padStart(2, "0")} /{" "}
-            {String(MADEIRA.images.length).padStart(2, "0")}
+        <button
+          onClick={prevImage}
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white p-4 rounded-full transition-all duration-300 border border-white/10 hover:border-[#C9A96E]/30 backdrop-blur-sm"
+          aria-label="Previous image"
+        >
+          <ChevronLeft size={28} />
+        </button>
+        <button
+          onClick={nextImage}
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white p-4 rounded-full transition-all duration-300 border border-white/10 hover:border-[#C9A96E]/30 backdrop-blur-sm"
+          aria-label="Next image"
+        >
+          <ChevronRight size={28} />
+        </button>
+
+        {allImages.length > 1 && (
+          <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-10 flex gap-1.5 px-4">
+            {allImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`h-1 rounded-full transition-all duration-300 ${
+                  index === currentImageIndex
+                    ? "w-6 bg-[#C9A96E]"
+                    : "w-3 bg-white/30 hover:bg-white/50"
+                }`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none">
+          <span className="font-sans text-[8px] uppercase tracking-[0.25em] text-white/30">
+            Scroll
           </span>
+          <div className="flex gap-1">
+            <div className="w-8 h-0.5 rounded-full bg-[#C9A96E]" />
+          </div>
         </div>
-      )}
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 pointer-events-none opacity-40">
-        <span className="font-sans text-[7px] uppercase tracking-[0.3em] text-white/40">
-          Scroll
-        </span>
-        <div className="w-px h-8 bg-gradient-to-b from-white/40 to-transparent" />
       </div>
     </section>
   );

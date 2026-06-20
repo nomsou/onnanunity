@@ -3,19 +3,28 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getProperties } from "@/utils/propertyutils";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const menuOverlayRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const properties = getProperties();
 
   const links = [
-    { label: "Home", href: "#hero" },
-     { label: "The Madeira", href: "#anchor" }, 
-    { label: "Portfolio", href: "#portfolio" },
+    { label: "The Madeira", href: "#anchor" },
+    {
+      label: "Portfolio",
+      href: "#portfolio",
+      dropdown: true,
+      items: properties.map((p) => ({ label: p.name, href: `#${p.slug}` })),
+    },
     { label: "About", href: "#mission" },
     { label: "Services", href: "#services" },
     { label: "Contact", href: "#footer" },
@@ -25,6 +34,20 @@ export default function Navbar() {
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   useEffect(() => {
@@ -53,6 +76,7 @@ export default function Navbar() {
   const handleScrollTo = (e: React.MouseEvent, target: string) => {
     e.preventDefault();
     setMobileOpen(false);
+    setDropdownOpen(false);
     const element = document.querySelector(target);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -99,10 +123,8 @@ export default function Navbar() {
               </span>
               <span
                 className={cn(
-                  "font-sans text-[8px] tracking-[0.25em] text-white uppercase mt-1",
-                  useTransparent
-                    ? "text-white"
-                    : "text-neutral-900",
+                  "font-sans text-[8px] tracking-[0.25em] uppercase mt-1",
+                  useTransparent ? "text-white" : "text-neutral-900",
                 )}
               >
                 Est. 1999
@@ -112,20 +134,70 @@ export default function Navbar() {
 
           <nav className="hidden lg:flex items-center gap-8">
             {links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleScrollTo(e, link.href)}
-                className={cn(
-                  "font-sans text-[11px] tracking-widest uppercase transition-colors relative group py-2",
-                  useTransparent
-                    ? "text-white/70 hover:text-white"
-                    : "text-neutral-600 hover:text-neutral-900",
+              <div key={link.label} className="relative group">
+                {link.dropdown ? (
+                  <div ref={dropdownRef}>
+                    <button
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                      className={cn(
+                        "font-sans text-[11px] tracking-widest uppercase transition-colors relative py-2 flex items-center gap-1",
+                        useTransparent
+                          ? "text-white/70 hover:text-white"
+                          : "text-neutral-600 hover:text-neutral-900",
+                      )}
+                    >
+                      {link.label}
+                      <ChevronDown
+                        size={12}
+                        className={`transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    {dropdownOpen && (
+                      <div className="absolute top-full left-0 mt-2 bg-white shadow-lg border border-border-custom min-w-[200px] py-2 z-50">
+                        {link.items.map(
+                          (item: { label: string; href: string }) => (
+                            <a
+                              key={item.label}
+                              href={item.href}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setDropdownOpen(false);
+                                const element = document.querySelector(
+                                  item.href,
+                                );
+                                if (element) {
+                                  element.scrollIntoView({
+                                    behavior: "smooth",
+                                  });
+                                }
+                              }}
+                              className="block px-4 py-2 text-sm text-neutral-700 hover:bg-luxury-charcoal hover:text-luxury-gold transition-colors font-sans"
+                            >
+                              {item.label}
+                            </a>
+                          ),
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleScrollTo(e, link.href)}
+                    className={cn(
+                      "font-sans text-[11px] tracking-widest uppercase transition-colors relative group py-2",
+                      useTransparent
+                        ? "text-white/70 hover:text-white"
+                        : "text-neutral-600 hover:text-neutral-900",
+                    )}
+                  >
+                    {link.label}
+                    <span className="absolute bottom-0 left-0 h-px w-0 bg-luxury-gold transition-all duration-300 group-hover:w-full" />
+                  </a>
                 )}
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 h-px w-0 bg-luxury-gold transition-all duration-300 group-hover:w-full" />
-              </a>
+              </div>
             ))}
           </nav>
 
@@ -165,14 +237,42 @@ export default function Navbar() {
       >
         <nav className="flex flex-col gap-3">
           {links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleScrollTo(e, link.href)}
-              className="mob-link block font-display text-4xl font-light py-3 border-b border-border-custom text-luxury-cream hover:text-luxury-gold transition-colors opacity-0"
-            >
-              {link.label}
-            </a>
+            <div key={link.label}>
+              {link.dropdown ? (
+                <>
+                  <span className="mob-link block font-display text-4xl font-light py-3 border-b border-border-custom text-luxury-cream opacity-0">
+                    {link.label}
+                  </span>
+                  <div className="pl-6 flex flex-col gap-2 mb-2">
+                    {link.items.map((item: { label: string; href: string }) => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMobileOpen(false);
+                          const element = document.querySelector(item.href);
+                          if (element) {
+                            element.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                        className="font-sans text-sm text-luxury-muted hover:text-luxury-gold transition-colors"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <a
+                  href={link.href}
+                  onClick={(e) => handleScrollTo(e, link.href)}
+                  className="mob-link block font-display text-4xl font-light py-3 border-b border-border-custom text-luxury-cream hover:text-luxury-gold transition-colors opacity-0"
+                >
+                  {link.label}
+                </a>
+              )}
+            </div>
           ))}
           <a
             href="#contact"
