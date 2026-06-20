@@ -71,6 +71,7 @@ export default function Footer() {
   return (
     <footer
       ref={rootRef}
+      id="footer"
       className="bg-luxury-charcoal2 border-t border-luxury-charcoal3"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-16">

@@ -18,7 +18,7 @@ export default function Navbar() {
     { label: "Portfolio", href: "#portfolio" },
     { label: "About", href: "#mission" },
     { label: "Services", href: "#services" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "#footer" },
   ];
 
   useEffect(() => {
