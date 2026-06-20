@@ -8,47 +8,54 @@ import { Building2, HardHat } from "lucide-react";
 
 const CHOICE_KEY = "onnan_splash_choice";
 
+type Phase =
+  | "deciding"
+  | "hidden"
+  | "visible"
+  | "exiting-reveal"
+  | "exiting-opaque"
+  | "done";
+
 export default function SplashScreen() {
-  // Start as "not mounted" — we decide whether to show it after checking
-  // sessionStorage on the client, so a refresh on an already-chosen path
-  // never flashes the splash back up.
-  const [isMounted, setIsMounted] = useState(false);
-  const [isExiting, setIsExiting] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const choicesRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
 
-  useEffect(() => {
-    // Only the real-estate homepage route shows the splash at all. If a
-    // choice was already made this session, skip it entirely.
-    const alreadyChosen = sessionStorage.getItem(CHOICE_KEY);
-    if (pathname === "/" && !alreadyChosen) {
-      setIsMounted(true);
+  const eligibleRoute = pathname === "/";
+  const [phase, setPhase] = useState<Phase>(
+    eligibleRoute ? "deciding" : "hidden",
+  );
+  const containerRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (!eligibleRoute) {
+      setPhase("hidden");
+      return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const alreadyChosen = sessionStorage.getItem(CHOICE_KEY);
+    if (!alreadyChosen) {
+      setPhase("visible");
+    } else {
+      setPhase("hidden");
+    }
   }, []);
 
-  const useIsomorphicLayoutEffect =
-    typeof window !== "undefined" ? useLayoutEffect : useEffect;
-
-  useIsomorphicLayoutEffect(() => {
-    if (!isMounted) return;
+  // Entrance animation
+  useEffect(() => {
+    if (phase !== "visible") return;
 
     document.body.style.overflow = "hidden";
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-
       gsap.set(logoRef.current, { scale: 0.95, opacity: 0 });
       gsap.set(".splash-char", { opacity: 0, y: 15 });
       gsap.set(".splash-choice", { opacity: 0, y: 24 });
 
+      const tl = gsap.timeline();
       tl.to(logoRef.current, {
         scale: 1,
         opacity: 1,
-        duration: 1.2,
+        duration: 0.8,
         ease: "power3.out",
       })
         .to(
@@ -56,72 +63,115 @@ export default function SplashScreen() {
           {
             opacity: 1,
             y: 0,
-            stagger: 0.03,
-            duration: 0.6,
+            stagger: 0.02,
+            duration: 0.4,
             ease: "power2.out",
           },
-          "-=0.4",
+          "-=0.3",
         )
         .to(
           ".splash-choice",
           {
             opacity: 1,
             y: 0,
-            stagger: 0.12,
-            duration: 0.7,
+            stagger: 0.08,
+            duration: 0.5,
             ease: "power3.out",
           },
           "-=0.2",
         );
     }, containerRef);
 
-    return () => {
-      ctx.revert();
-    };
-  }, [isMounted]);
+    return () => ctx.revert();
+  }, [phase]);
 
-  const dismiss = (after?: () => void) => {
-    if (isExiting) return;
-    setIsExiting(true);
+  // Heartbeat pulse animation for buttons
+  useEffect(() => {
+    if (phase !== "visible") return;
 
-    gsap.to(containerRef.current, {
-      opacity: 0,
-      duration: 0.7,
-      ease: "power2.inOut",
-      onComplete: () => {
-        setIsMounted(false);
-        document.body.style.overflow = "";
+    const ctx = gsap.context(() => {
+      // Create a heartbeat-style pulse on both buttons
+      gsap.to(".splash-choice", {
+        scale: 1.03,
+        duration: 0.3,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+        stagger: 0.15,
+      });
+    }, containerRef);
 
-        if (after) {
-          after();
-        } else {
-          setTimeout(() => {
+    return () => ctx.revert();
+  }, [phase]);
+
+  // Reveal-exit (Real Estate chosen)
+  useEffect(() => {
+    if (phase !== "exiting-reveal") return;
+
+    const ctx = gsap.context(() => {
+      gsap.to(containerRef.current, {
+        opacity: 0,
+        duration: 0.7,
+        ease: "power2.inOut",
+        onComplete: () => {
+          document.body.style.overflow = "";
+          ctx.revert();
+          setPhase("done");
+          requestAnimationFrame(() => {
             window.dispatchEvent(new Event("resize"));
             ScrollTrigger.refresh();
-          }, 50);
-        }
-      },
-    });
-  };
+          });
+        },
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [phase]);
+
+  // Opaque-exit (Engineering Services chosen)
+  useEffect(() => {
+    if (phase !== "exiting-opaque") return;
+
+    const ctx = gsap.context(() => {
+      gsap.to(containerRef.current, {
+        opacity: 1,
+        duration: 0.35,
+        ease: "power1.out",
+        onComplete: () => {
+          router.push("/engineering-services");
+          document.body.style.overflow = "";
+          ctx.revert();
+          setPhase("done");
+        },
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [phase, router]);
 
   const handleRealEstate = () => {
+    if (phase !== "visible") return;
     sessionStorage.setItem(CHOICE_KEY, "real-estate");
-    // Real estate is the current site — simply reveal the homepage underneath.
-    dismiss();
+    setPhase("exiting-reveal");
   };
 
   const handleEngineering = () => {
+    if (phase !== "visible") return;
     sessionStorage.setItem(CHOICE_KEY, "engineering");
-    // Engineering Services lives on its own route.
-    dismiss(() => router.push("/engineering-services"));
+    setPhase("exiting-opaque");
   };
 
-  if (!isMounted) return null;
+  if (phase === "hidden" || phase === "done") {
+    return null;
+  }
+
+  const isInteractive = phase === "visible";
 
   return (
     <div
       ref={containerRef}
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-luxury-charcoal px-6"
+      aria-hidden={!isInteractive}
     >
       <div className="flex flex-col items-center text-center max-w-lg w-full">
         <div ref={logoRef} className="flex flex-col items-center text-center">
@@ -153,13 +203,12 @@ export default function SplashScreen() {
           </p>
         </div>
 
-        <div
-          ref={choicesRef}
-          className="flex flex-col sm:flex-row gap-4 w-full mt-12"
-        >
+        <div className="flex flex-col sm:flex-row gap-4 w-full mt-12">
           <button
             onClick={handleRealEstate}
-            className="splash-choice group flex-1 flex flex-col items-center gap-3 border border-border-custom/60 hover:border-luxury-gold bg-luxury-charcoal2/40 hover:bg-luxury-charcoal2 px-6 py-8 transition-all duration-300 cursor-pointer"
+            disabled={!isInteractive}
+            className="splash-choice group flex-1 flex flex-col items-center gap-3 border border-border-custom/60 hover:border-luxury-gold bg-luxury-charcoal2/40 hover:bg-luxury-charcoal2 px-6 py-8 transition-all duration-300 cursor-pointer disabled:cursor-default disabled:opacity-60 rounded-lg"
+            style={{ opacity: 0, transform: "translateY(24px)" }}
           >
             <Building2
               size={26}
@@ -172,7 +221,9 @@ export default function SplashScreen() {
 
           <button
             onClick={handleEngineering}
-            className="splash-choice group flex-1 flex flex-col items-center gap-3 border border-border-custom/60 hover:border-luxury-gold bg-luxury-charcoal2/40 hover:bg-luxury-charcoal2 px-6 py-8 transition-all duration-300 cursor-pointer"
+            disabled={!isInteractive}
+            className="splash-choice group flex-1 flex flex-col items-center gap-3 border border-border-custom/60 hover:border-luxury-gold bg-luxury-charcoal2/40 hover:bg-luxury-charcoal2 px-6 py-8 transition-all duration-300 cursor-pointer disabled:cursor-default disabled:opacity-60 rounded-lg"
+            style={{ opacity: 0, transform: "translateY(24px)" }}
           >
             <HardHat
               size={26}
