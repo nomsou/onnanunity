@@ -20,9 +20,9 @@ const services = [
   },
   {
     icon: HardHat,
-    title: "Civil Construction",
+    title: "Engineering",
     description:
-      "Our construction arm executes projects with precision and professionalism, leveraging experienced site teams and premium materials to bring layouts to life on schedule.",
+      "Our engineering arm executes projects with precision and professionalism, leveraging experienced site teams and premium materials to bring layouts to life on schedule.",
     features: [
       "Structural Works",
       "Interior Finishing",
