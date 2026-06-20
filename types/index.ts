@@ -21,7 +21,7 @@ export interface PropertyUnit {
   description: string;
   beds: number;
   baths: number;
-  sqft: number;
+  sqm: number;
   price?: number;
   images: string[];
 }
@@ -44,7 +44,7 @@ export interface Property {
   priceFrom?: number;
   beds: number;
   baths: number;
-  sqft: number;
+  sqm: number;
   coverImage: string;
   images: string[];
   features: PropertyFeature[];

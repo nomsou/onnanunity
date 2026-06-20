@@ -40,7 +40,7 @@ interface PropertySchemaProps {
   address: string;
   beds: number;
   baths: number;
-  sqft: number;
+  sqm: number;
 }
 
 export function PropertySchema({
@@ -52,7 +52,7 @@ export function PropertySchema({
   address,
   beds,
   baths,
-  sqft,
+  sqm,
 }: PropertySchemaProps) {
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
@@ -70,7 +70,7 @@ export function PropertySchema({
     numberOfBathroomsTotal: baths,
     floorSize: {
       "@type": "QuantitativeValue",
-      value: sqft,
+      value: sqm,
       unitCode: "FTK",
     },
   };

@@ -152,7 +152,7 @@ export default function PropertyFullscreenSection({
               <div className="flex items-center gap-2">
                 <Maximize2 size={16} className="text-[#C9A96E]/80" />
                 <span className="font-sans text-sm text-white/80">
-                  {property.sqft.toLocaleString()} ft²
+                  {property.sqm} m²
                 </span>
               </div>
               <div className="flex items-center gap-2">

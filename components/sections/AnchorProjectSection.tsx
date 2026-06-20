@@ -15,7 +15,7 @@ import {
 
 const MADEIRA = {
   name: "The Madeira",
-  tagline: "The Pinnacle of Premium Living",
+  tagline: "Hospitality • Serviced Apartments",
   description:
     "The Madeira represents the pinnacle of Onnan Unity's commitment to excellence. " +
     "This anchor development sets a new benchmark for premium living in Abuja, " +
@@ -25,14 +25,14 @@ const MADEIRA = {
   neighborhood: "Maitama",
   beds: 6,
   baths: 5,
-  sqft: 6500,
+  sqm: 604,
   images: [
     "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80",
     "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80",
     "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80",
     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80",
     "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1920&q=80",
-    "https://images.unsplash.com/photo-1600607687644-aac3c3ac31b8?w=1920&q=80",
+    "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1920&q=80",
   ],
 };
 
@@ -110,13 +110,13 @@ export default function AnchorProjectSection() {
     return () => ctx.revert();
   }, []);
 
-  useEffect(() => {
-    if (allImages.length <= 1) return;
-    const timer = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [allImages.length]);
+  // useEffect(() => {
+  //   if (allImages.length <= 1) return;
+  //   const timer = setInterval(() => {
+  //     setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
+  //   }, 5000);
+  //   return () => clearInterval(timer);
+  // }, [allImages.length]);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
@@ -177,7 +177,7 @@ export default function AnchorProjectSection() {
               <div className="flex items-center gap-2">
                 <Maximize2 size={16} className="text-[#C9A96E]/80" />
                 <span className="font-sans text-sm text-white/80">
-                  {MADEIRA.sqft.toLocaleString()} ft²
+                  {MADEIRA.sqm} m²
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -195,7 +195,7 @@ export default function AnchorProjectSection() {
             </div>
 
             <a
-              href="#contact"
+              href="#footer"
               className="inline-flex items-center gap-3 font-sans text-xs font-medium uppercase tracking-widest text-[#C9A96E] hover:text-white transition-colors duration-300 group"
             >
               <span>Enquire About The Madeira</span>

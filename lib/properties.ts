@@ -19,7 +19,7 @@ export const properties: Property[] = [
     priceFrom: 180000000,
     beds: 5,
     baths: 3,
-    sqft: 4200,
+    sqm: 390, // 4200 sqft ≈ 390 sqm
     coverImage: "/images/properties/askia-i/cover.jpg",
     images: [
       "/images/properties/askia-i/gallery-1.jpg",
@@ -75,7 +75,7 @@ export const properties: Property[] = [
     priceFrom: 220000000,
     beds: 5,
     baths: 4,
-    sqft: 5100,
+    sqm: 474, // 5100 sqft ≈ 474 sqm
     coverImage: "/images/properties/askia-ii/cover.jpg",
     images: [
       "/images/properties/askia-ii/gallery-1.jpg",
@@ -132,7 +132,7 @@ export const properties: Property[] = [
     priceFrom: 250000000,
     beds: 5,
     baths: 5,
-    sqft: 5800,
+    sqm: 539, // 5800 sqft ≈ 539 sqm
     coverImage: "/images/properties/gana-villas/cover.jpg",
     images: ["/images/properties/gana-villas/cover.jpg"],
     features: [
@@ -183,7 +183,7 @@ export const properties: Property[] = [
     priceFrom: 150000000,
     beds: 5,
     baths: 4,
-    sqft: 4500,
+    sqm: 418, // 4500 sqft ≈ 418 sqm
     coverImage: "/images/properties/mansa/cover.jpg",
     images: [
       "/images/properties/mansa/gallery-1.jpg",
@@ -237,7 +237,7 @@ export const properties: Property[] = [
     priceFrom: 165000000,
     beds: 5,
     baths: 3,
-    sqft: 4000,
+    sqm: 372, // 4000 sqft ≈ 372 sqm
     coverImage: "/images/properties/samori/cover.jpg",
     images: [
       "/images/properties/samori/gallery-1.jpg",
@@ -291,7 +291,7 @@ export const properties: Property[] = [
     priceFrom: 175000000,
     beds: 5,
     baths: 3,
-    sqft: 4100,
+    sqm: 381, // 4100 sqft ≈ 381 sqm
     coverImage: "/images/properties/sonni/cover.jpg",
     images: [
       "/images/properties/sonni/gallery-1.jpg",
@@ -344,7 +344,7 @@ export const properties: Property[] = [
     priceFrom: 95000000,
     beds: 4,
     baths: 3,
-    sqft: 2800,
+    sqm: 260, // 2800 sqft ≈ 260 sqm
     coverImage: "/images/properties/embe-terraces/cover.png",
     images: [
       "/images/properties/embe-terraces/gallery-1.png",
@@ -379,62 +379,4 @@ export const properties: Property[] = [
     ],
     isFeatured: true,
   },
-  // Add this to the properties array in lib/properties.ts
-  // {
-  //   id: "8",
-  //   slug: "madeira",
-  //   name: "The Madeira",
-  //   tagline: "Premium Luxury Living — Our Anchor Development",
-  //   description:
-  //     "The Madeira represents the pinnacle of Onnan Unity's commitment to excellence. " +
-  //     "This anchor development sets a new benchmark for premium living in Abuja, " +
-  //     "featuring unparalleled craftsmanship, prime location, and world-class amenities. " +
-  //     "Every detail has been meticulously curated to offer residents an extraordinary " +
-  //     "living experience that redefines luxury.",
-  //   location: "Prime Location, Abuja",
-  //   neighborhood: "Abuja",
-  //   type: "Villa",
-  //   status: "Coming Soon",
-  //   priceFrom: 350000000,
-  //   beds: 6,
-  //   baths: 5,
-  //   sqft: 6500,
-  //   coverImage: "/images/properties/madeira/cover-placeholder.jpg",
-  //   images: [
-  //     "/images/properties/madeira/gallery-1-placeholder.jpg",
-  //     "/images/properties/madeira/gallery-2-placeholder.jpg",
-  //     "/images/properties/madeira/gallery-3-placeholder.jpg",
-  //     "/images/properties/madeira/gallery-4-placeholder.jpg",
-  //     "/images/properties/madeira/gallery-5-placeholder.jpg",
-  //   ],
-  //   features: [
-  //     {
-  //       icon: "Zap",
-  //       title: "Solar Power",
-  //       description: "Full estate solar grid with battery backup.",
-  //     },
-  //     {
-  //       icon: "ShieldCheck",
-  //       title: "Premium Security",
-  //       description: "24/7 manned security with AI surveillance.",
-  //     },
-  //     {
-  //       icon: "Droplets",
-  //       title: "Infinity Pool",
-  //       description: "Private infinity-edge pool per villa.",
-  //     },
-  //     {
-  //       icon: "Dumbbell",
-  //       title: "Wellness Center",
-  //       description: "Fully equipped gym and spa facilities.",
-  //     },
-  //   ],
-  //   proximity: [
-  //     { label: "To CBD", value: "5 mins" },
-  //     { label: "To Airport", value: "20 mins" },
-  //     { label: "To Maitama", value: "3 mins" },
-  //   ],
-  //   isFeatured: true,
-  //   yearCompleted: 2025,
-  // },
 ];
