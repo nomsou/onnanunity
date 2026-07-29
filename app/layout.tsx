@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SplashScreen from "@/components/ui/SplashScreen";
 import { OrganizationSchema } from "@/components/shared/StructuredData";
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: "Onnan Unity | Real Estate Company Abuja",
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <Analytics />
         <OrganizationSchema />
         <SplashScreen />
         {children}
