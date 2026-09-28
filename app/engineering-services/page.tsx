@@ -372,17 +372,30 @@ export default function EngineeringServicesPage() {
       </section>
 
       <footer className="border-t border-border-custom/40 py-8 px-6 md:px-12 lg:px-20">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-          <p className="font-sans text-xs text-luxury-muted">
-            © {new Date().getFullYear()} Onnan Unity Co. Ltd. All rights
-            reserved.
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-3">
+          <p className="font-sans text-sm text-black text-center">
+            Designed &amp; Built by{" "}
+            <a
+              href="https://www.linkedin.com/in/nomsounaogu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold underline transition-colors duration-200 hover:opacity-70 animate-credit-pulse text-luxury-gold hover:text-luxury-gold2"
+            >
+              Nomso
+            </a>
           </p>
-          <Link
-            href="/"
-            className="font-sans text-xs text-luxury-gold hover:text-luxury-gold2 transition-colors"
-          >
-            Visit our Real Estate site →
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 w-full text-center sm:text-left">
+            <p className="font-sans text-xs text-black">
+              © {new Date().getFullYear()} Onnan Unity Co. Ltd. All rights
+              reserved.
+            </p>
+            <Link
+              href="/"
+              className="font-sans text-xs text-luxury-gold hover:text-luxury-gold2 transition-colors"
+            >
+              Visit our Real Estate site →
+            </Link>
+          </div>
         </div>
       </footer>
     </div>

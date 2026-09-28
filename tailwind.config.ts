@@ -82,8 +82,13 @@ const config: Config = {
         "ken-burns-left": "kenBurnsLeft 7s ease-out forwards",
         "ken-burns-up": "kenBurnsUp 7s ease-out forwards",
         marquee: "marquee 28s linear infinite",
+        "credit-pulse": "creditPulse 2.4s ease-in-out infinite",
       },
       keyframes: {
+        creditPulse: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.8" },
+        },
         fadeUp: {
           "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },

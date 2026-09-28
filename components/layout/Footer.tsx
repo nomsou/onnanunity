@@ -392,13 +392,27 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-luxury-charcoal3">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-          <p className="font-sans text-xs text-black">
-            © {year} Onnan Unity Co. Ltd. All rights reserved.
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-6 flex flex-col items-center gap-3">
+          <p className="font-sans text-sm text-black text-center">
+            Designed &amp; Built by{" "}
+            <a
+              href="https://www.linkedin.com/in/nomsounaogu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold underline transition-colors duration-200 hover:opacity-70 animate-credit-pulse"
+              style={{ color: "#8B7A5C" }}
+            >
+              Nomso
+            </a>
           </p>
-          <p className="font-sans text-xs text-black invisible sm:visible">
-            Engineering integrity built to endure.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 w-full text-center sm:text-left">
+            <p className="font-sans text-xs text-black">
+              © {year} Onnan Unity Co. Ltd. All rights reserved.
+            </p>
+            <p className="font-sans text-xs text-black invisible sm:visible">
+              Engineering integrity built to endure.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
