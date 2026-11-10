@@ -396,7 +396,7 @@ export default function Footer() {
           <p className="font-sans text-sm text-black text-center">
             Designed &amp; Built by{" "}
             <a
-              href="https://www.linkedin.com/in/nomsounaogu/"
+              href="https://www.nomso.dev/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold underline transition-colors duration-200 hover:opacity-70 animate-credit-pulse"
